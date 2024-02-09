@@ -48,10 +48,10 @@
 > The following are the key features of the extension.
 
 - Perform web search with the option of choosing from mulptiple search engine
-- Easily access porpular AI chats such as ChatGPT, Google Bard, and Perplexity
-- Easily access utility web applications such Gmail, Google Drive, GitHub, Facebook, LinkedIn, Twitter, WhatsApp, Telegram, Instagram and more.
+- Easily access popular AI chats such as ChatGPT, Google Bard, and Perplexity
+- Easily access utility web applications such as Gmail, Google Drive, GitHub, Facebook, LinkedIn, Twitter, WhatsApp, Telegram, and Instagram.
 - See a nice looking analogue clock with date and month
-- Have a cutom text displayed on the screen
+- Have a custom text displayed on the screen
 <!-- Add more features as necessary -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
