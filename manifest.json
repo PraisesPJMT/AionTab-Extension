@@ -1,0 +1,15 @@
+{
+	"manifest_version": 3,
+	"name": "AionTab",
+	"version": "1.0.1",
+	"description": "A custom start page with an analog clock and search functionality.",
+	"permissions": ["scripting", "storage", "webNavigation", "activeTab"],
+	"chrome_url_overrides": {
+		"newtab": "index.html"
+	},
+	"icons": {
+		"16": "aion.png",
+		"48": "aion.png",
+		"128": "aion.png"
+	}
+}
