@@ -1,10 +1,10 @@
-# AionTab <a name="readme-top"></a>
+# `AionTab` <a name="readme-top"></a>
 
 ## 📗 Table of Contents
 
-- [AionTab ](#aiontab-)
+- [`AionTab` ](#aiontab-)
   - [📗 Table of Contents](#-table-of-contents)
-  - [📖 AionTab ](#-aiontab-)
+  - [📖 About AionTab Extension ](#-about-aiontab-extension-)
   - [🛠 Built With ](#-built-with-)
     - [⚙️ Tech Stack ](#️-tech-stack-)
     - [💡 Key Features ](#-key-features-)
@@ -22,9 +22,9 @@
   - [🙏 Acknowledgments ](#-acknowledgments-)
   - [📝 License ](#-license-)
 
-## 📖 AionTab <a name="project-title"></a>
+## 📖 About AionTab Extension <a name="about-aiontab-extension"></a>
 
-> `AionTab` is an extension for chromium based browsers like Chrome, Chromium, Edge, Brave, etc. The extension replaces the default browser new tab with a cool dark looking tab that has functionality for multiple search engines options, bookmark of AI chat sites, bookmarks of utility sites, cool analogue clock and more.
+> **`AionTab`** is an extension for Chromium-based browsers like `Chrome`, `Chromium`, `Edge`, `Brave`, and others. It replaces the default new tab with a cool, dark-looking tab offering various functionalities. These include multiple search engine options, bookmarks for AI chat sites and utility sites, a stylish analog clock, and more.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -33,10 +33,16 @@
 > Here are the tech stacks applied in this project.
 
 <details>
-  <summary>Languages</summary>
+  <summary>Markup</summary>
   <ul>
     <li>HTML5</li>
     <li>CSS3</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Languages</summary>
+  <ul>
     <li>JavaScript</li>
   </ul>
 </details>
@@ -47,9 +53,9 @@
 
 > The following are the key features of the extension.
 
-- Perform web search with the option of choosing from mulptiple search engine
-- Easily access popular AI chats such as ChatGPT, Google Bard, and Perplexity
-- Easily access utility web applications such as Gmail, Google Drive, GitHub, Facebook, LinkedIn, Twitter, WhatsApp, Telegram, and Instagram.
+- Perform web search with the option of choosing from mulptiple search engine (`Google`, `Bing`, `DockDockGo`, `YouTube`)
+- Easily access popular AI chats such as `ChatGPT`, `Gemini`, and `Perplexity`
+- Easily access utility web applications such as `Gmail`, `Google Drive`, `GitHub`, `Facebook`, `LinkedIn`, `Twitter`, `WhatsApp`, `Telegram`, and `Instagram`.
 - See a nice looking analogue clock with date and month
 - Have a custom text displayed on the screen
 <!-- Add more features as necessary -->
@@ -92,13 +98,12 @@ Install a modern browser e.g
 
 ### Setup
 
-Download this:
-
 > The following are setups for the `AionTab` extension before installation
 
-- Create a new folder in your computer `Documents` folder and name the folder `Extensions`
-- Download the [AionTab](https://github.com/PraisesPJMT/AionTab-Extension/) using this link: [Downloan AionTab](https://github.com/PraisesPJMT/AionTab-Extension/archive/refs/heads/main.zip)
-- Move the downloaded zip file of the AionTab extension to the newly created `Extensions` folder
+- Create a new folder in your computer `Documents` folder and name the folder `Extensions`.
+- Download the [AionTab](https://github.com/PraisesPJMT/AionTab-Extension/) using this link: [Downloan AionTab](https://github.com/PraisesPJMT/AionTab-Extension/archive/refs/heads/main.zip).
+- Move the downloaded `AionTab-Extension-main.zip` zip file of the AionTab extension to the newly created `Extensions` folder.
+- Extract the `AionTab-Extension-main.zip` file into the `Extensions` folder.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -107,7 +112,7 @@ Download this:
 > Follow these steps to install the `AionTab` extension on Chromium-based browsers:
 
 1. **Enable Developer Mode:** In your browser's extensions settings (e.g., `chrome://extensions`), activate "Developer mode".
-2. **Load Unpacked Extension:** `Click` "Load unpacked" and select the directory containing your extension's ZIP file.
+2. **Load Unpacked Extension:** `Click` "Load unpacked" and select the `AionTab-Extension-main` folder containing the `AionTab` extension.
 3. **Reload for Updates:** Changes to your extension won't reflect automatically. `Right-click` the extension icon and select "Reload" to see updates.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -134,9 +139,9 @@ Download this:
 
 > The following are features to be expected in the future
 
-- [ ] **Add functionality for selecting different color theme**
+- [ ] **Add functionality **for selecting **a **different**** color theme****
 - [ ] **Add functionality for getting and displaying weather**
-- [ ] **Add functionality for selecting clock displayed as either analogue or digital form**
+- [ ] **Add functionality for selecting clock displayed **as either **analog** or digital** form**
 - [ ] **Add functionality for adding different timezones**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
