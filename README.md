@@ -129,9 +129,9 @@ Install a modern browser e.g
 
 > **Github:** [@PraisesPJMT](https://github.com/PraisesPJMT/)
 >
-> **LinkedIn:** [Praises Musa Tula](https://www.linkedin.com/in//username/)
+> **LinkedIn:** [Praises Musa Tula](https://www.linkedin.com/in/praises-tula/)
 >
-> **Twitter:** [@PraisesPJMT](https://twitter.com/username/)
+> **Twitter:** [@PraisesPJMT](https://twitter.com/PraisesPJMT/)
 >
 > **Email:** [praisesmusa@gmail.com](mailto:praisesmusa@gmail.com)
 
