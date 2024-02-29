@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Add event listener for radio buttons
 	for (const radio of searchEngineRadios) {
 		radio.addEventListener('change', () => {
-			localStorage.setItem('searchEngine', this.value);
+			localStorage.setItem('searchEngine', radio.value);
 		});
 	}
 
