@@ -19,7 +19,7 @@
 
 		<!-- Analogue Clock Section -->
 		<section id="time">
-			<div class="clock">
+			<div class="analog-clock">
 				<div class="outer-clock-face">
 					<div class="marking marking-one"></div>
 					<div class="marking marking-two"></div>
@@ -30,7 +30,25 @@
 					<div class="hand min-hand"></div>
 					<div class="hand second-hand"></div>
 				</div>
-				<div id="date"></div>
+				<div class="date"></div>
+			</div>
+
+			<div class="digital-clock">
+				<div class="date">Feb 29</div>
+				<div class="clock-face">
+					<span class="hour">
+						<span data="1" class="digits">0</span>
+						<span data="1" class="digits">0</span> </span
+					><span class="divider">:</span
+					><span class="minutes"
+						><span data="1" class="digits">0</span>
+						<span data="1" class="digits">0</span></span
+					><span class="divider">:</span>
+					<span class="seconds">
+						<span data="1" class="digits">0</span>
+						<span data="1" class="digits">0</span>
+					</span>
+				</div>
 			</div>
 		</section>
 
@@ -38,7 +56,23 @@
 		<form id="searchForm" action="#" method="get" autocomplete="off">
 			<div id="search">
 				<input type="text" id="searchInput" placeholder="Search..." autofocus />
-				<button type="submit">Search</button>
+				<button type="submit" aria-label="Search">
+					<svg
+						width="800px"
+						height="800px"
+						viewBox="0 0 24 24"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+							stroke="#000000"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</button>
 			</div>
 			<div id="searchEngine">
 				<input

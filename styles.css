@@ -4,6 +4,11 @@
 	src: url('/font/HelveticaNeueRoman.otf') format('truetype');
 }
 
+@font-face {
+	font-family: 'segment';
+	src: url('/font/SevenSegment.ttf') format('truetype');
+}
+
 :root {
 	--dark-color: #282828;
 	--light-color: #bdbdcb;
@@ -129,9 +134,9 @@ form {
 }
 
 #search input[type='text'] {
-	padding: 5px 10px;
+	padding: 10px 10px;
 	background: none;
-	border-radius: 5px;
+	border-radius: 10px;
 	border: none;
 	color: var(--light-color);
 	transition: all 0.5s cubic-bezier(0.25, 0.25, 0.5, 1.9);
@@ -149,8 +154,7 @@ form {
 }
 
 #search button {
-	padding: 5px 10px;
-	border-radius: 8px;
+	border-radius: 10px;
 	background: #bdbdcb99;
 	color: var(--dark-color);
 	border: none;
@@ -163,6 +167,15 @@ form {
 
 #search button:hover {
 	background: var(--light-color);
+}
+
+#search button svg {
+	width: 25px;
+	height: 25px;
+}
+
+#search button svg path {
+	stroke: var(--dark-color);
 }
 
 #searchEngine {
@@ -346,7 +359,87 @@ form {
 }
 
 /* Clock Styles */
-.clock {
+#time {
+	width: 30vw;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.digital-clock {
+	width: 20vw;
+	height: fit-content;
+	min-width: 15rem;
+	max-width: 20rem;
+	padding: 2rem;
+	border: 7px solid var(--dark-color);
+	box-shadow: -4px -4px 10px rgba(67, 67, 67, 0.5),
+		inset 4px 4px 10px rgba(0, 0, 0, 0.5),
+		inset -4px -4px 10px rgba(67, 67, 67, 0.5), 4px 4px 10px rgba(0, 0, 0, 0.3);
+	border-radius: 10%;
+	margin: 50px auto;
+
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.digital-clock .date {
+	color: #bdbdcb88;
+	position: static;
+	font-size: 1.6rem;
+	font-weight: 700;
+}
+
+.clock-face {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5vw;
+	font-size: 4.5rem;
+	font-weight: 700;
+}
+
+.divider {
+	color: var(--light-color);
+}
+
+.hour,
+.minutes,
+.seconds {
+	font-family: 'segment';
+	display: flex;
+}
+
+.digits {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	color: var(--dark-color);
+	font-family: 'segment';
+	position: relative;
+}
+
+.digits::after {
+	content: attr(data);
+	color: #bdbdcb;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.hour .digits::after,
+.minutes .digits::after {
+	color: #61afff;
+}
+
+.seconds .digits::after {
+	color: #ee791a;
+}
+
+.analog-clock {
 	width: 20vw;
 	height: 20vw;
 	min-width: 15rem;
@@ -361,9 +454,11 @@ form {
 		inset -4px -4px 10px rgba(67, 67, 67, 0.5), 4px 4px 10px rgba(0, 0, 0, 0.3);
 	border-radius: 50%;
 	margin: 50px auto;
+
+	display: none;
 }
 
-#date {
+.analog-clock .date {
 	color: #bdbdcb88;
 	position: absolute;
 	top: 30%;

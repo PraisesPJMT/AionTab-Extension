@@ -53,23 +53,45 @@ const performSearch = () => {
 
 // Update Analog Clock
 const updateClock = () => {
+	// Analog elements
 	const secondHand = document.querySelector('.second-hand');
 	const minsHand = document.querySelector('.min-hand');
 	const hourHand = document.querySelector('.hour-hand');
+
+	// Digital Elements
+	const secondDigit = document.querySelector('.seconds');
+	const minsDigit = document.querySelector('.minutes');
+	const hourDigit = document.querySelector('.hour');
+
+	const updateValues = (elems, data) => {
+		elems.forEach((elem, index) => elem.setAttribute('data', data[index]));
+	};
 
 	const now = new Date();
 
 	const seconds = now.getSeconds();
 	const secondsDegrees = (seconds / 60) * 360 + 90;
 	secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+	updateValues(
+		secondDigit.querySelectorAll('.digits'),
+		String(seconds).padStart(2, '0')
+	);
 
 	const mins = now.getMinutes();
 	const minsDegrees = (mins / 60) * 360 + (seconds / 60) * 6 + 90;
 	minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+	updateValues(
+		minsDigit.querySelectorAll('.digits'),
+		String(mins).padStart(2, '0')
+	);
 
 	const hour = now.getHours();
 	const hourDegrees = (hour / 12) * 360 + (mins / 60) * 30 + 90;
 	hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+	updateValues(
+		hourDigit.querySelectorAll('.digits'),
+		String(hour).padStart(2, '0')
+	);
 
 	const dayOfWeek = now.getDay();
 
@@ -111,12 +133,16 @@ const updateClock = () => {
 
 	// Get the name of the day using the array
 	const dayName = dayNames[dayOfWeek];
-	const dateElem = document.getElementById('date');
-	if (dateElem)
-		dateElem.innerText = `${dayName.substring(0, 3)} | ${monthName.substring(
-			0,
-			3
-		)} ${dayOfMonth}`;
+	const dateElems = document.querySelectorAll('.date');
+	if (dateElems) {
+		dateElems.forEach(
+			(dateElem) =>
+				(dateElem.innerText = `${dayName.substring(
+					0,
+					3
+				)} | ${monthName.substring(0, 3)} ${dayOfMonth}`)
+		);
+	}
 };
 
 // Generate Search URL
