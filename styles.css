@@ -583,3 +583,111 @@ form {
 	height: 2px;
 	z-index: 10;
 }
+
+/* Settings Styles */
+#settings {
+	display: flex;
+	align-items: center;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	background: #282828dd;
+	width: fit-content;
+	max-width: 100vw;
+}
+
+#settings button {
+	background: var(--light-color);
+	opacity: 0.6;
+	padding: 5px;
+	border-radius: 10px;
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+#settings button:hover {
+	opacity: 1;
+}
+
+#settings button svg {
+	width: 30px;
+	height: 30px;
+}
+
+#settings button svg path {
+	fill: var(--dark-color);
+}
+
+#settings dialog {
+	animation: fade-out 0.7s ease-out;
+	border-radius: 10px;
+	background: var(--dark-color);
+	border: 2px solid var(--light-color);
+	color: var(--light-color);
+	/* position: fixed;
+	bottom: 0%;
+	right: 0%; */
+	/* transform: translate(0%, 0%); */
+	margin-right: 10px;
+	margin-bottom: 10px;
+
+	box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+#settings dialog .wrap {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	bottom: 0;
+}
+
+#settings dialog[open] {
+	animation: fade-in 0.7s ease-out;
+}
+
+#settings dialog[open]::backdrop {
+	animation: backdrop-fade-in 0.7s ease-out forwards;
+}
+
+/* Animation keyframes */
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		transform: scaleY(0);
+		display: none;
+	}
+
+	100% {
+		opacity: 1;
+		transform: scaleY(1);
+		display: block;
+	}
+}
+
+@keyframes fade-out {
+	0% {
+		opacity: 1;
+		transform: scaleY(1);
+		display: block;
+	}
+
+	100% {
+		opacity: 0;
+		transform: scaleY(0);
+		display: none;
+	}
+}
+
+@keyframes backdrop-fade-in {
+	0% {
+		background-color: rgb(0 0 0 / 0%);
+	}
+
+	100% {
+		background-color: rgb(0 0 0 / 25%);
+	}
+}

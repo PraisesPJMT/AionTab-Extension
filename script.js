@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const searchInput = document.getElementById('searchInput');
 	const searchEngineRadios = document.getElementsByName('searchEngine');
 
+	const settingsDialog = document.getElementById('settingsDialog');
+	const showSettings = document.querySelector('.openSettings');
+	const closeSettings = document.querySelector('.closeSettings');
+
 	// Stored previous search option
 	const savedSearchEngine = localStorage.getItem('searchEngine');
 
@@ -38,6 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Add event listener for Enter key press in search input
 	searchInput.addEventListener('keypress', (event) => {
 		if (event.key === 'Enter' && searchInput.value.length > 0) performSearch();
+	});
+
+	// Settings Actions
+	showSettings.addEventListener('click', () => {
+		settingsDialog.showModal();
+		showSettings.style.opacity = '0';
+	});
+
+	closeSettings.addEventListener('click', () => {
+		settingsDialog.close();
+		showSettings.style.opacity = '1';
+	});
+
+	settingsDialog.addEventListener('close', () => {
+		showSettings.style.opacity = '1';
 	});
 });
 
