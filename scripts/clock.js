@@ -29,7 +29,14 @@ export const updateClock = () => {
 	 * @return {void} This function does not return a value.
 	 */
 	const updateValues = (elems, data) => {
-		elems.forEach((elem, index) => elem.setAttribute('data', data[index]));
+		elems.forEach((elem, index) => {
+			// elem.setAttribute('data', data[index]);
+			const spans = elem.getElementsByTagName('span');
+
+			for (let i = 0; i < spans.length; i++) {
+				spans[i].setAttribute('data', data[index][i]);
+			}
+		});
 	};
 
 	/**
@@ -48,7 +55,7 @@ export const updateClock = () => {
 	const hours = currentDate.getHours();
 
 	// Get the corresponding time values as strings
-	const secondsStr = seconds.toString();
+	const secondsStr = seconds.toString().padStart(2, '0');
 	const minsStr = mins.toString();
 	const hoursStr = hours.toString();
 
@@ -58,6 +65,8 @@ export const updateClock = () => {
 	hourHand.style.transform = `rotate(${(hours / 12) * 360}deg)`;
 
 	// Update the digital clock values
-	updateValues([secondDigit, minsDigit, hourDigit], [secondsStr, minsStr, hoursStr]);
+	updateValues(
+		[secondDigit, minsDigit, hourDigit],
+		[secondsStr, minsStr, hoursStr]
+	);
 };
-
