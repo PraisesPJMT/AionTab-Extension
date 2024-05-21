@@ -56,13 +56,17 @@ export const updateClock = () => {
 
 	// Get the corresponding time values as strings
 	const secondsStr = seconds.toString().padStart(2, '0');
-	const minsStr = mins.toString();
-	const hoursStr = hours.toString();
+	const minsStr = mins.toString().padStart(2, '0');
+	const hoursStr = hours.toString().padStart(2, '0');
 
 	// Update the analog clock hands
-	secondHand.style.transform = `rotate(${(seconds / 60) * 360}deg)`;
-	minsHand.style.transform = `rotate(${(mins / 60) * 360}deg)`;
-	hourHand.style.transform = `rotate(${(hours / 12) * 360}deg)`;
+	secondHand.style.transform = `rotate(${(seconds / 60) * 360 + 90}deg)`;
+	minsHand.style.transform = `rotate(${
+		(mins / 60) * 360 + (seconds / 60) * 6 + 90
+	}deg)`;
+	hourHand.style.transform = `rotate(${
+		(hours / 12) * 360 + (mins / 60) * 30 + 90
+	}deg)`;
 
 	// Update the digital clock values
 	updateValues(
