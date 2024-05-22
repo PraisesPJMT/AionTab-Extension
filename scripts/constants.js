@@ -21,3 +21,5 @@ export const SEARCH_ENGINE_OPT = 'searchEngine';
 
 export const TEXT_DISPLAY_OPT = 'textDisplay';
 
+export const AI_TOOLS_DISPLAY_OPT = 'aiToolsDisplay';
+

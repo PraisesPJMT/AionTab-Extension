@@ -8,11 +8,75 @@
  * @module settings
  */
 
-import { TEXT_DISPLAY_OPT } from './constants.js';
+import { AI_TOOLS_DISPLAY_OPT, TEXT_DISPLAY_OPT } from './constants.js';
 
 const settingsDialog = document.getElementById('settingsDialog');
 const showSettings = document.querySelector('.openSettings');
 const closeSettings = document.querySelector('.closeSettings');
+
+/**
+ * Toggles the display of an item based on the state of an event.
+ *
+ * @param {Event} event - The event that triggered the toggle.
+ * @param {Object} data - An object containing the item properties.
+ * @param {string} data.itemID - The ID of the item to toggle.
+ * @param {string} data.itemDisplay - The display style to set on the item.
+ * @param {string} data.itemStorage - The key to set in localStorage.
+ * @return {void} This function does not return a value.
+ */
+const toggleItemDisplay = (event, data) => {
+	const { itemID, itemDisplay, itemStorage } = data;
+	const itemDisplayElement = document.getElementById(itemID);
+	const element = event.target.tagName.toLowerCase();
+
+	/**
+	 * Sets a value in localStorage, updates the display style of an element, and loads settings.
+	 *
+	 * @param {Element} item - The element to update the display style of.
+	 * @param {string} storage - The key to set in localStorage.
+	 * @param {string} display - The display style to set on the element.
+	 * @return {void} This function does not return a value.
+	 */
+	const displayItem = () => {
+		localStorage.setItem(itemStorage, true);
+		itemDisplayElement.style.display = itemDisplay;
+		loadSettings();
+	};
+
+	/**
+	 * Removes an item from the local storage and updates its display style to 'none'.
+	 *
+	 * @param {Element} item - The element to be removed.
+	 * @param {string} storage - The key in the local storage associated with the item.
+	 * @return {void} This function does not return a value.
+	 */
+	const removeItem = () => {
+		localStorage.setItem(itemStorage, false);
+		itemDisplayElement.style.display = 'none';
+		loadSettings();
+	};
+
+	if (element === 'input') {
+		if (event.currentTarget.checked) {
+			displayItem();
+		} else {
+			removeItem();
+		}
+	}
+
+	if (element === 'span') {
+		const labelElem = event.target.closest('label');
+		const inputElement = labelElem.querySelector('input[type="checkbox"]');
+
+		if (event.key === 'Enter') {
+			if (inputElement.checked) {
+				removeItem();
+			} else {
+				displayItem();
+			}
+		}
+	}
+};
 
 /**
  * Opens the settings dialog and hides the "Open Settings" button.
@@ -40,56 +104,19 @@ export const closeSettingsDialog = () => {
  * @param {Event} event - The event object triggered by the checkbox change.
  * @return {void} This function does not return anything.
  */
-export const toggleTextDisplay = (event) => {
-	const textDisplay = document.getElementById('text');
-	const element = event.target.tagName.toLowerCase();
+export const toggleTextDisplay = (event) =>
+	toggleItemDisplay(event, {
+		itemID: 'text',
+		itemDisplay: 'block',
+		itemStorage: TEXT_DISPLAY_OPT,
+	});
 
-	/**
-	 * Sets the localStorage item for displaying text to true,
-	 * sets the display style of the text element to 'block',
-	 * and loads the settings.
-	 *
-	 * @return {void} This function does not return anything.
-	 */
-	const displayText = () => {
-		localStorage.setItem(TEXT_DISPLAY_OPT, true);
-		textDisplay.style.display = 'block';
-		loadSettings();
-	};
-
-	/**
-	 * Removes the text by setting the TEXT_DISPLAY_OPT localStorage item to false,
-	 * hiding the textDisplay element, and loading the settings.
-	 *
-	 * @return {void} This function does not return anything.
-	 */
-	const removeText = () => {
-		localStorage.setItem(TEXT_DISPLAY_OPT, false);
-		textDisplay.style.display = 'none';
-		loadSettings();
-	};
-
-	if (element === 'input') {
-		if (event.currentTarget.checked) {
-			displayText();
-		} else {
-			removeText();
-		}
-	}
-
-	if (element === 'span') {
-		const labelElem = event.target.closest('label');
-		const inputElement = labelElem.querySelector('input[type="checkbox"]');
-
-		if (event.key === 'Enter') {
-			if (inputElement.checked) {
-				removeText();
-			} else {
-				displayText();
-			}
-		}
-	}
-};
+export const toggleAIToolsDisplay = (event) =>
+	toggleItemDisplay(event, {
+		itemID: 'ai',
+		itemDisplay: 'flex',
+		itemStorage: AI_TOOLS_DISPLAY_OPT,
+	});
 
 /**
  * Loads the settings from local storage
@@ -98,19 +125,47 @@ export const toggleTextDisplay = (event) => {
  * @return {void} This function does not return anything.
  */
 export const loadSettings = () => {
-	// Load text display option
-	const textDisplayOpt = localStorage.getItem(TEXT_DISPLAY_OPT);
+	/**
+	 * Loads the settings for a given item from local storage and updates its display style accordingly.
+	 *
+	 * @param {Object} itemData - An object containing the item properties.
+	 * @param {string} itemData.itemID - The ID of the item to load settings for.
+	 * @param {string} itemData.itemToggle - The ID of the toggle element associated with the item.
+	 * @param {string} itemData.itemDisplay - The display style to set on the item.
+	 * @param {string} itemData.itemStorage - The key to set in localStorage.
+	 * @return {void} This function does not return a value.
+	 */
+	const loadItemSettings = (itemData) => {
+		const { itemID, itemToggle, itemDisplay, itemStorage } = itemData;
+		const itemDisplayOpt = localStorage.getItem(itemStorage);
 
-	if (textDisplayOpt) {
-		const textDisplay = document.getElementById('text');
-		const textDisplayToggle = document.getElementById('text-toggle');
+		if (itemDisplayOpt) {
+			const itemDisplayElement = document.getElementById(itemID);
+			const itemDisplayToggle = document.getElementById(itemToggle);
 
-		if (textDisplayOpt === 'true') {
-			textDisplay.style.display = 'block';
-			textDisplayToggle.checked = true;
-		} else {
-			textDisplay.style.display = 'none';
-			textDisplayToggle.checked = false;
+			if (itemDisplayOpt === 'true') {
+				itemDisplayElement.style.display = itemDisplay;
+				itemDisplayToggle.checked = true;
+			} else {
+				itemDisplayElement.style.display = 'none';
+				itemDisplayToggle.checked = false;
+			}
 		}
-	}
+	};
+
+	// Load text display option
+	loadItemSettings({
+		itemID: 'text',
+		itemToggle: 'text-toggle',
+		itemDisplay: 'block',
+		itemStorage: TEXT_DISPLAY_OPT,
+	});
+
+	// Load AI Tools display option
+	loadItemSettings({
+		itemID: 'ai',
+		itemToggle: 'ai-tools-toggle',
+		itemDisplay: 'flex',
+		itemStorage: AI_TOOLS_DISPLAY_OPT,
+	});
 };

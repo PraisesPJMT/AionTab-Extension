@@ -1,4 +1,4 @@
-import { USER_TEXT_OPT, SEARCH_ENGINE_OPT } from './scripts/constants.js';
+import { SEARCH_ENGINE_OPT } from './scripts/constants.js';
 import { updateClock } from './scripts/clock.js';
 import { loadSearchEngine, performSearch } from './scripts/search.js';
 import { updateText, applyText } from './scripts/text.js';
@@ -8,6 +8,7 @@ import {
 	loadSettings,
 	openSettingsDialog,
 	toggleTextDisplay,
+	toggleAIToolsDisplay,
 } from './scripts/settings.js';
 
 // DOM Load Actions
@@ -65,24 +66,35 @@ document.addEventListener('DOMContentLoaded', () => {
 	const showSettings = document.querySelector('.openSettings');
 	const closeSettings = document.querySelector('.closeSettings');
 
-	// Settings toggle elements
-	const textDisplayToggle = document.getElementById('text-toggle');
-	const textDisplaySpanToggle = document.getElementById(
-		'hiddenTextToggleInputContent'
-	);
-
-	const aiToolsDisplayToggle = document.getElementById('text-toggle');
-
 	showSettings.addEventListener('click', () => openSettingsDialog());
 
 	closeSettings.addEventListener('click', () => closeSettingsDialog());
 
 	// Add event listener for text display toggle
+	const textDisplayToggle = document.getElementById('text-toggle');
+	const textDisplaySpanToggle = document.getElementById(
+		'hiddenTextToggleInputContent'
+	);
+
 	textDisplayToggle.addEventListener('change', (event) =>
 		toggleTextDisplay(event)
 	);
 	textDisplaySpanToggle.addEventListener('keydown', (event) =>
 		toggleTextDisplay(event)
+	);
+
+	// Add event listener for AI Tools display toggle
+	const aiToolsDisplayToggle = document.getElementById('ai-tools-toggle');
+	const aiToolsDisplaySpanToggle = document.getElementById(
+		'hiddenAIToolsToggleInputContent'
+	);
+
+	aiToolsDisplayToggle.addEventListener('change', (event) =>
+		toggleAIToolsDisplay(event)
+	);
+
+	aiToolsDisplaySpanToggle.addEventListener('keydown', (event) =>
+		toggleAIToolsDisplay(event)
 	);
 });
 

@@ -70,11 +70,14 @@ body {
 /* AI Secntion Styles */
 #ai {
 	display: flex;
-	gap: 2rem;
 	position: absolute;
 	top: 20px;
 	right: 20px;
 	width: fit-content;
+}
+
+#ai a {
+	margin: 0 1rem;
 }
 
 #ai a svg {
