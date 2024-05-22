@@ -9,15 +9,17 @@
  */
 
 import {
-	AI_TOOLS_DISPLAY_OPT,
+	CLOCK_TYPE_OPT,
 	TEXT_DISPLAY_OPT,
-	BOOKMARKS_DISPLAY_OPT,
 	CLOCK_DISPLAY_OPT,
+	AI_TOOLS_DISPLAY_OPT,
+	BOOKMARKS_DISPLAY_OPT,
+	ANALOG_CLOCK_TOGGLE_ID,
+	DIGITAL_CLOCK_TOGGLE_ID,
 } from './constants.js';
 
 const settingsDialog = document.getElementById('settingsDialog');
 const showSettings = document.querySelector('.openSettings');
-const closeSettings = document.querySelector('.closeSettings');
 
 /**
  * Toggles the display of an item based on the state of an event.
@@ -148,12 +150,54 @@ export const toggleBookmarksDisplay = (event) =>
  * @param {Event} event - The event object triggered by the checkbox change.
  * @return {void} This function does not return anything.
  */
-export const clockDisplay = (event) =>
+export const toggleClockDisplay = (event) =>
 	toggleItemDisplay(event, {
 		itemID: 'clock',
 		itemDisplay: 'flex',
 		itemStorage: CLOCK_DISPLAY_OPT,
 	});
+
+/**
+ * Toggles the type of 'clock' element (analog or digital) displayed.
+ *
+ * @param {Event} event - The event object triggered by the checkbox change.
+ * @return {void} This function does not return anything.
+ */
+export const toggleClockType = (event) => {
+	if (localStorage.getItem(CLOCK_DISPLAY_OPT) === 'false') return;
+
+	const analogClock = document.querySelector('.analog-clock');
+	const digitalClock = document.querySelector('.digital-clock');
+	const targetID = event.target.id;
+
+	const displayAnalogClock = () => {
+		localStorage.setItem(CLOCK_TYPE_OPT, false);
+		analogClock.style.display = 'block';
+		digitalClock.style.display = 'none';
+		loadSettings();
+	};
+
+	const displayDigitalClock = () => {
+		localStorage.setItem(CLOCK_TYPE_OPT, true);
+		analogClock.style.display = 'none';
+		digitalClock.style.display = 'flex';
+		loadSettings();
+	};
+
+	if (
+		targetID === ANALOG_CLOCK_TOGGLE_ID ||
+		(event.key === 'Enter' && targetID === ANALOG_CLOCK_TOGGLE_ID)
+	) {
+		displayAnalogClock();
+	}
+
+	if (
+		targetID === DIGITAL_CLOCK_TOGGLE_ID ||
+		(event.key === 'Enter' && targetID === DIGITAL_CLOCK_TOGGLE_ID)
+	) {
+		displayDigitalClock();
+	}
+};
 
 /**
  * Loads the settings from local storage
@@ -221,4 +265,30 @@ export const loadSettings = () => {
 		itemDisplay: 'flex',
 		itemStorage: CLOCK_DISPLAY_OPT,
 	});
+
+	// Load clock type option
+	const clockTypeOpt = localStorage.getItem(CLOCK_TYPE_OPT);
+	const clockDisplayOpt = localStorage.getItem(CLOCK_DISPLAY_OPT);
+
+	const analogClock = document.querySelector('.analog-clock');
+	const digitalClock = document.querySelector('.digital-clock');
+	const clockTypeToggle = document.getElementById('clock-select');
+
+	if (clockDisplayOpt === 'false') {
+		clockTypeToggle.disabled = true;
+	} else {
+		clockTypeToggle.disabled = false;
+	}
+
+	if (clockTypeOpt === 'true') {
+		analogClock.style.display = 'none';
+		digitalClock.style.display = 'flex';
+		clockTypeToggle.checked = true;
+	}
+
+	if (clockTypeOpt === 'false') {
+		analogClock.style.display = 'block';
+		digitalClock.style.display = 'none';
+		clockTypeToggle.checked = false;
+	}
 };

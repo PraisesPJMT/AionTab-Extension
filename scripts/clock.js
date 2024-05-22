@@ -1,5 +1,6 @@
 /**
- * This module contains functions for updating the analog and digital clocks with the current time.
+ * This module contains functions for updating the analog and
+ * digital clocks with the current time.
  *
  * @module clock
  */
@@ -30,7 +31,6 @@ export const updateClock = () => {
 	 */
 	const updateValues = (elems, data) => {
 		elems.forEach((elem, index) => {
-			// elem.setAttribute('data', data[index]);
 			const spans = elem.getElementsByTagName('span');
 
 			for (let i = 0; i < spans.length; i++) {

@@ -25,7 +25,8 @@ export const applyText = () => {
 };
 
 /**
- * Updates the text content of the 'textDisplay' element and stores it in the local storage.
+ * Updates the text content of the 'textDisplay' element and
+ * stores it in the local storage.
  *
  * @return {void} This function does not return anything.
  */

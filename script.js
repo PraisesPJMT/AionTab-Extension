@@ -1,16 +1,17 @@
-import { SEARCH_ENGINE_OPT } from './scripts/constants.js';
 import { updateClock } from './scripts/clock.js';
-import { loadSearchEngine, performSearch } from './scripts/search.js';
 import { updateText, applyText } from './scripts/text.js';
+import { SEARCH_ENGINE_OPT } from './scripts/constants.js';
 import { bookmarkCLickAction } from './scripts/bookmark.js';
+import { loadSearchEngine, performSearch } from './scripts/search.js';
 import {
-	closeSettingsDialog,
 	loadSettings,
 	openSettingsDialog,
+	closeSettingsDialog,
+	toggleClockType,
 	toggleTextDisplay,
+	toggleClockDisplay,
 	toggleAIToolsDisplay,
 	toggleBookmarksDisplay,
-	clockDisplay,
 } from './scripts/settings.js';
 
 // DOM Load Actions
@@ -120,10 +121,36 @@ document.addEventListener('DOMContentLoaded', () => {
 	);
 
 	clockDisplayToggle.addEventListener('change', (event) =>
-		clockDisplay(event)
+		toggleClockDisplay(event)
 	);
 	clockDisplaySpanToggle.addEventListener('keydown', (event) =>
-		clockDisplay(event)
+		toggleClockDisplay(event)
+	);
+
+	// Add event listener for clock type toggle
+	const clockTypeToggle = document.getElementById('clock-select');
+	const analogClockSpanToggle = document.getElementById(
+		'hiddenAnalogClockToggleInputContent'
+	);
+	const digitalClockSpanToggle = document.getElementById(
+		'hiddenDigitalClockToggleInputContent'
+	);
+
+	clockTypeToggle.addEventListener('click', (event) => event.preventDefault());
+	clockTypeToggle.addEventListener('change', (event) => event.preventDefault());
+
+	analogClockSpanToggle.addEventListener('keydown', (event) =>
+		toggleClockType(event)
+	);
+	analogClockSpanToggle.addEventListener('click', (event) =>
+		toggleClockType(event)
+	);
+
+	digitalClockSpanToggle.addEventListener('keydown', (event) =>
+		toggleClockType(event)
+	);
+	digitalClockSpanToggle.addEventListener('click', (event) =>
+		toggleClockType(event)
 	);
 });
 

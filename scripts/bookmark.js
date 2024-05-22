@@ -1,6 +1,7 @@
 /**
  * This file contains the functionality related to bookmark actions.
- * It defines the bookmarkCLickAction function to toggle the visibility of bookmarks and animate the transition.
+ * It defines the bookmarkCLickAction function to toggle the visibility
+ * of bookmarks and animate the transition.
  *
  * @module bookmark
  */
