@@ -12,6 +12,7 @@ import {
 	AI_TOOLS_DISPLAY_OPT,
 	TEXT_DISPLAY_OPT,
 	BOOKMARKS_DISPLAY_OPT,
+	CLOCK_DISPLAY_OPT,
 } from './constants.js';
 
 const settingsDialog = document.getElementById('settingsDialog');
@@ -142,6 +143,19 @@ export const toggleBookmarksDisplay = (event) =>
 	});
 
 /**
+ * Toggles the display of the 'clock' element based on the state of the event.
+ *
+ * @param {Event} event - The event object triggered by the checkbox change.
+ * @return {void} This function does not return anything.
+ */
+export const clockDisplay = (event) =>
+	toggleItemDisplay(event, {
+		itemID: 'clock',
+		itemDisplay: 'flex',
+		itemStorage: CLOCK_DISPLAY_OPT,
+	});
+
+/**
  * Loads the settings from local storage
  * - Updates the display of the text element based on the text display option.
  *
@@ -198,5 +212,13 @@ export const loadSettings = () => {
 		itemToggle: 'bookmarks-toggle',
 		itemDisplay: 'flex',
 		itemStorage: BOOKMARKS_DISPLAY_OPT,
+	});
+
+	// Load clock display option
+	loadItemSettings({
+		itemID: 'clock',
+		itemToggle: 'clock-toggle',
+		itemDisplay: 'flex',
+		itemStorage: CLOCK_DISPLAY_OPT,
 	});
 };

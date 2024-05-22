@@ -363,7 +363,7 @@ form {
 }
 
 /* Clock Styles */
-#time {
+#clock {
 	width: 30vw;
 	height: fit-content;
 	display: flex;
@@ -616,7 +616,8 @@ form {
 	cursor: pointer;
 }
 
-#settings button:hover {
+#settings button:hover,
+#settings button:focus {
 	opacity: 1;
 }
 

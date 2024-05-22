@@ -10,6 +10,7 @@ import {
 	toggleTextDisplay,
 	toggleAIToolsDisplay,
 	toggleBookmarksDisplay,
+	clockDisplay,
 } from './scripts/settings.js';
 
 // DOM Load Actions
@@ -110,6 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	bookmarksDisplaySpanToggle.addEventListener('keydown', (event) =>
 		toggleBookmarksDisplay(event)
+	);
+
+	// Add event listener for clock display toggle
+	const clockDisplayToggle = document.getElementById('clock-toggle');
+	const clockDisplaySpanToggle = document.getElementById(
+		'hiddenClockToggleInputContent'
+	);
+
+	clockDisplayToggle.addEventListener('change', (event) =>
+		clockDisplay(event)
+	);
+	clockDisplaySpanToggle.addEventListener('keydown', (event) =>
+		clockDisplay(event)
 	);
 });
 
