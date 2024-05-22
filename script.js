@@ -9,6 +9,7 @@ import {
 	openSettingsDialog,
 	toggleTextDisplay,
 	toggleAIToolsDisplay,
+	toggleBookmarksDisplay,
 } from './scripts/settings.js';
 
 // DOM Load Actions
@@ -95,6 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	aiToolsDisplaySpanToggle.addEventListener('keydown', (event) =>
 		toggleAIToolsDisplay(event)
+	);
+
+	// Add event listener for bookmarks display toggle
+	const bookmarksDisplayToggle = document.getElementById('bookmarks-toggle');
+	const bookmarksDisplaySpanToggle = document.getElementById(
+		'hiddenBookmarksToggleInputContent'
+	);
+
+	bookmarksDisplayToggle.addEventListener('change', (event) =>
+		toggleBookmarksDisplay(event)
+	);
+
+	bookmarksDisplaySpanToggle.addEventListener('keydown', (event) =>
+		toggleBookmarksDisplay(event)
 	);
 });
 

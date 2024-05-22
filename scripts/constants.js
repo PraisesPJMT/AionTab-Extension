@@ -23,3 +23,5 @@ export const TEXT_DISPLAY_OPT = 'textDisplay';
 
 export const AI_TOOLS_DISPLAY_OPT = 'aiToolsDisplay';
 
+export const BOOKMARKS_DISPLAY_OPT = 'bookmarksDisplay';
+

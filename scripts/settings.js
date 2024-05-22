@@ -8,7 +8,11 @@
  * @module settings
  */
 
-import { AI_TOOLS_DISPLAY_OPT, TEXT_DISPLAY_OPT } from './constants.js';
+import {
+	AI_TOOLS_DISPLAY_OPT,
+	TEXT_DISPLAY_OPT,
+	BOOKMARKS_DISPLAY_OPT,
+} from './constants.js';
 
 const settingsDialog = document.getElementById('settingsDialog');
 const showSettings = document.querySelector('.openSettings');
@@ -111,11 +115,30 @@ export const toggleTextDisplay = (event) =>
 		itemStorage: TEXT_DISPLAY_OPT,
 	});
 
+/**
+ * Toggles the display of the 'ai' element based on the state of the checkbox.
+ *
+ * @param {Event} event - The event object triggered by the checkbox change.
+ * @return {void} This function does not return anything.
+ */
 export const toggleAIToolsDisplay = (event) =>
 	toggleItemDisplay(event, {
 		itemID: 'ai',
 		itemDisplay: 'flex',
 		itemStorage: AI_TOOLS_DISPLAY_OPT,
+	});
+
+/**
+ * Toggles the display of the 'bookmarks' element based on the state of the checkbox.
+ *
+ * @param {Event} event - The event object triggered by the checkbox change.
+ * @return {void} This function does not return anything.
+ */
+export const toggleBookmarksDisplay = (event) =>
+	toggleItemDisplay(event, {
+		itemID: 'bookmarks',
+		itemDisplay: 'flex',
+		itemStorage: BOOKMARKS_DISPLAY_OPT,
 	});
 
 /**
@@ -167,5 +190,13 @@ export const loadSettings = () => {
 		itemToggle: 'ai-tools-toggle',
 		itemDisplay: 'flex',
 		itemStorage: AI_TOOLS_DISPLAY_OPT,
+	});
+
+	// Load bookmarks display option
+	loadItemSettings({
+		itemID: 'bookmarks',
+		itemToggle: 'bookmarks-toggle',
+		itemDisplay: 'flex',
+		itemStorage: BOOKMARKS_DISPLAY_OPT,
 	});
 };
