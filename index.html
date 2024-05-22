@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="icon" type="image/x-icon" href="./favicon/aion.svg" />
-		<script defer src="script.js"></script>
+		<script type="module" src="script.js"></script>
 
 		<title>AionTab</title>
 	</head>
@@ -563,7 +563,13 @@
 
 		<!-- Settings Dialog Box -->
 		<section id="settings">
-			<button type="button" class="openSettings" aria-label="Setting Button">
+			<button
+				type="button"
+				class="openSettings"
+				aria-label="Open Settings"
+				aria-haspopup="true"
+				aria-controls="settingsDialog"
+			>
 				<svg
 					viewBox="0 0 600 600"
 					version="1.1"
@@ -606,10 +612,75 @@
 				</svg>
 			</button>
 
-			<dialog id="settingsDialog">
+			<dialog id="settingsDialog" aria-labelledby="settingsDialogTitle">
 				<div class="wrap">
-					Content here
-					<button type="button" class="closeSettings">Save</button>
+					<button
+						type="button"
+						class="closeSettings"
+						aria-label="Save Settings"
+					></button>
+					<div class="settingsSection">
+						<h4>Screen Displays</h4>
+						<div class="grid">
+							<label class="toggle-checkbox" for="text-toggle">
+								<span>Text</span>
+								<input
+									type="checkbox"
+									id="text-toggle"
+									aria-labelledby="hiddenTextToggleInputLabel"
+								/>
+								<span id="hiddenTextToggleInputContent" tabindex="0"></span>
+							</label>
+
+							<label class="toggle-checkbox" for="ai-tools-toggle">
+								<span>AI Tools</span>
+								<input
+									type="checkbox"
+									id="ai-tools-toggle"
+									aria-labelledby="hiddenAIToolsToggleInputLabel"
+								/>
+								<span id="hiddenAIToolsToggleInputContent" tabindex="0"></span>
+							</label>
+
+							<label class="toggle-checkbox" for="bookmarks-toggle">
+								<span>Bookmarks</span>
+								<input
+									type="checkbox"
+									id="bookmarks-toggle"
+									aria-labelledby="hiddenBookmarksToggleInputLabel"
+								/>
+								<span
+									id="hiddenBookmarksToggleInputContent"
+									tabindex="0"
+								></span>
+							</label>
+
+							<label class="toggle-checkbox" for="clock-toggle">
+								<span>Clock</span>
+								<input
+									type="checkbox"
+									id="clock-toggle"
+									aria-labelledby="hiddenClockToggleInputLabel"
+								/>
+								<span id="hiddenClockToggleInputContent" tabindex="0"></span>
+							</label>
+						</div>
+					</div>
+
+					<div class="settingsSection">
+						<h4>Clock Type</h4>
+						<div class="wide">
+							<label class="select-toggle" for="clock-select">
+								<input type="checkbox" id="clock-select" />
+								<span>
+									<span class="uncheck" tabindex="0">ANALOG</span>
+									<span class="check" tabindex="0">DIGITAL</span>
+								</span>
+							</label>
+						</div>
+					</div>
+
+					<!-- <button type="button" class="closeSettings">Save</button> -->
 				</div>
 			</dialog>
 		</section>

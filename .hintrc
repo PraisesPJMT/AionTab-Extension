@@ -3,6 +3,14 @@
     "development"
   ],
   "hints": {
-    "scoped-svg-styles": "off"
+    "scoped-svg-styles": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "width: fit-content"
+        ]
+      }
+    ]
   }
 }
