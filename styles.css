@@ -49,6 +49,7 @@ body {
 	color: var(--light-color);
 	font-size: 2rem;
 	font-weight: 800;
+	transition: all 0.4s ease-in-out;
 }
 
 #text div {
@@ -384,6 +385,8 @@ form {
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
+
+	display: none;
 }
 
 .digital-clock .date {
@@ -423,7 +426,7 @@ form {
 }
 
 .digits::after {
-	content: attr(data);
+	/* content: attr(data); */
 	color: #bdbdcb;
 	position: absolute;
 	top: 0;
@@ -432,10 +435,12 @@ form {
 
 .hour .digits::after,
 .minutes .digits::after {
+	content: attr(data);
 	color: #61afff;
 }
 
 .seconds .digits::after {
+	content: attr(data);
 	color: #ee791a;
 }
 
@@ -455,7 +460,7 @@ form {
 	border-radius: 50%;
 	margin: 50px auto;
 
-	display: none;
+	/* display: none; */
 }
 
 .analog-clock .date {
@@ -598,7 +603,7 @@ form {
 
 #settings button {
 	background: var(--light-color);
-	opacity: 0.6;
+	opacity: 0.3;
 	padding: 5px;
 	border-radius: 10px;
 	border: none;
@@ -622,17 +627,14 @@ form {
 }
 
 #settings dialog {
-	animation: fade-out 0.7s ease-out;
+	animation: fade-out 0.3s ease-in-out;
 	border-radius: 10px;
 	background: var(--dark-color);
 	border: 2px solid var(--light-color);
 	color: var(--light-color);
-	/* position: fixed;
-	bottom: 0%;
-	right: 0%; */
-	/* transform: translate(0%, 0%); */
 	margin-right: 10px;
 	margin-bottom: 10px;
+	z-index: 1000000 !important;
 
 	box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
@@ -642,14 +644,180 @@ form {
 	flex-direction: column;
 	gap: 1rem;
 	bottom: 0;
+
+	position: relative;
 }
 
-#settings dialog[open] {
-	animation: fade-in 0.7s ease-out;
+#settings dialog[open],
+#settings dialog[close] {
+	animation: fade-in 0.3s ease-in-out;
 }
 
-#settings dialog[open]::backdrop {
-	animation: backdrop-fade-in 0.7s ease-out forwards;
+#settings dialog[open]::backdrop,
+#settings dialog[close]::backdrop {
+	animation: backdrop-fade-in 0.3s ease-in-out forwards;
+}
+
+#settings dialog .wrap .closeSettings {
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	width: 30px;
+	height: 30px;
+	background-color: var(--dark-color);
+	border: 1px solid var(--light-color);
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+#settings dialog .wrap .closeSettings:after,
+#settings dialog .wrap .closeSettings:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 20px;
+	height: 2px;
+	background-color: var(--light-color);
+}
+
+#settings dialog .wrap .closeSettings:after {
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#settings dialog .wrap .closeSettings:before {
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.settingsSection {
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.settingsSection h4 {
+	font-size: 16px;
+	margin: 5px 0 20px 0;
+}
+
+.settingsSection div.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 2rem 4rem;
+}
+
+.settingsSection div.wide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.toggle-checkbox {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	cursor: pointer;
+	font-size: 16px;
+	width: 100%;
+}
+
+.toggle-checkbox input[type='checkbox'],
+.select-toggle input[type='checkbox'] {
+	display: none;
+}
+
+.toggle-checkbox input[type='checkbox'] + span {
+	content: '';
+	width: 40px;
+	height: 20px;
+	background-color: var(--dark-color);
+	border: 1px solid var(--light-color);
+	border-radius: 6px;
+	position: relative;
+	transition: all 0.4s ease-in-out;
+}
+
+.toggle-checkbox input[type='checkbox'] + span::after {
+	content: '';
+	position: absolute;
+	top: 3.5px;
+	left: 2px;
+	width: 12px;
+	height: 12px;
+	background-color: var(--light-color);
+	border: 1px solid var(--light-color);
+	border-radius: 4px;
+	transition: all 0.4s ease-in-out;
+}
+
+.toggle-checkbox input[type='checkbox']:checked + span {
+	background-color: var(--light-color);
+	border: 1px solid var(--light-color);
+}
+
+.toggle-checkbox input[type='checkbox']:checked + span::after {
+	left: 23px;
+	width: 12px;
+	height: 12px;
+	background-color: var(--dark-color);
+	border: 1px solid var(--dark-color);
+}
+
+.select-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	cursor: pointer;
+	font-size: 16px;
+	width: 100%;
+}
+
+.select-toggle input[type='checkbox'] + span {
+	margin: auto;
+	display: flex;
+}
+
+.select-toggle input[type='checkbox'] + span .uncheck,
+.select-toggle input[type='checkbox'] + span .check {
+	padding: 6px 10px;
+	font-size: 13px;
+	font-weight: 800;
+	transition: all 0.4s ease-in-out;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.select-toggle input[type='checkbox'] + span .uncheck {
+	border-radius: 6px 0 0 6px;
+	background-color: var(--light-color);
+	border: 1px solid var(--light-color);
+	color: var(--dark-color);
+	transition: all 0.4s ease-in-out;
+}
+
+.select-toggle input[type='checkbox'] + span .check {
+	border-radius: 0 6px 6px 0;
+	background-color: var(--dark-color);
+	border: 1px solid var(--light-color);
+	color: var(--light-color);
+	border-left: none;
+	transition: all 0.4s ease-in-out;
+}
+
+.select-toggle input[type='checkbox']:checked + span .uncheck {
+	background-color: var(--dark-color);
+	border: 1px solid var(--light-color);
+	color: var(--light-color);
+}
+
+.select-toggle input[type='checkbox']:checked + span .check {
+	background-color: var(--light-color);
+	border: 1px solid var(--light-color);
+	color: var(--dark-color);
 }
 
 /* Animation keyframes */
