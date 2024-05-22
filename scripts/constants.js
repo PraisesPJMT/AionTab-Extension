@@ -18,3 +18,6 @@ export const USER_TEXT_OPT = 'userText';
  */
 export const SEARCH_ENGINE_OPT = 'searchEngine';
 
+
+export const TEXT_DISPLAY_OPT = 'textDisplay';
+
