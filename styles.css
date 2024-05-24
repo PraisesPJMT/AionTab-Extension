@@ -110,9 +110,10 @@ body {
 	position: absolute;
 	font-size: 1.5rem;
 	font-weight: 800;
-	bottom: -40px;
+	bottom: -45px;
 	left: 0;
 	transform: translate(-50%, -50%);
+	padding: 0.5rem;
 	opacity: 0;
 	transition: all 0.5s cubic-bezier(0.25, 0.25, 0.5, 1.9);
 }
@@ -194,6 +195,12 @@ form {
 	justify-content: center;
 	gap: 1rem;
 	margin: 2rem auto;
+	border: none;
+}
+
+#searchEngine legend {
+	visibility: hidden;
+	display: none;
 }
 
 #searchEngine input[type='radio'] {
@@ -203,7 +210,6 @@ form {
 #searchEngine label {
 	display: flex;
 	align-items: center;
-	padding: 1rem;
 	position: relative;
 	cursor: pointer;
 }
@@ -222,14 +228,17 @@ form {
 }
 
 #searchEngine label svg {
+	padding: 1rem;
 	transition: all 0.25s cubic-bezier(0.25, 0.25, 0.5, 1.9);
 }
 
-#searchEngine label:hover svg {
+#searchEngine label:hover svg,
+#searchEngine label:focus svg {
 	scale: 1.2;
 }
 
-#searchEngine label:hover span {
+#searchEngine label:hover span,
+#searchEngine label:focus span {
 	display: flex;
 	opacity: 1;
 }
@@ -245,15 +254,15 @@ form {
 	fill: var(--light-color);
 }
 
-#searchEngine input:checked + label {
+#searchEngine input:checked + svg {
 	background: var(--light-color);
 	box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 	border-radius: 10px;
 }
 
-#searchEngine input:checked + label svg,
-#searchEngine input:checked + label svg g,
-#searchEngine input:checked + label svg polygon {
+#searchEngine input:checked + svg,
+#searchEngine input:checked + svg g,
+#searchEngine input:checked + svg polygon {
 	fill: hsl(0, 0%, 16%);
 }
 

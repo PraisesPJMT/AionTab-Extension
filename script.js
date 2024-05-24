@@ -1,5 +1,5 @@
 import { updateClock } from './scripts/clock.js';
-import { updateText, applyText } from './scripts/text.js';
+import { updateText, loadText } from './scripts/text.js';
 import { SEARCH_ENGINE_OPT } from './scripts/constants.js';
 import { bookmarkCLickAction } from './scripts/bookmark.js';
 import { loadSearchEngine, performSearch } from './scripts/search.js';
@@ -16,39 +16,49 @@ import {
 
 // DOM Load Actions
 document.addEventListener('DOMContentLoaded', () => {
-	// Load Settings
-	loadSettings();
-
-	// Periodic Analog clock Update
-	setInterval(updateClock, 1000);
+	/* Tab initialization */
+	loadText();
 	updateClock();
+	loadSettings();
+	loadSearchEngine();
 
-	// DOM Elements
-	const searchForm = document.getElementById('searchForm');
-	const searchInput = document.getElementById('searchInput');
-	const searchEngineRadios = document.getElementsByName('searchEngine');
+	/* Clock Actions */
+	// Periodic clock Update
+	setInterval(updateClock, 1000);
 
+	/* Text Actions */
 	const userTextDiv = document.getElementById('textDisplay');
 
-	const bookmarkBtn = document.getElementById('bookmarkBtn');
-
-	// User Text Actions
-	applyText();
+	// Add event listener for text input
 	userTextDiv.addEventListener('input', () => updateText());
 
-	// Bookmark Actions
+	/* Bookmarks Actions */
+	const bookmarkBtn = document.getElementById('bookmarkBtn');
+
+	// Add event listener for bookmark button
 	bookmarkBtn.onclick = () => bookmarkCLickAction();
 
-	// Stored previous search option
-	const savedSearchEngine = localStorage.getItem(SEARCH_ENGINE_OPT);
-
-	// Update previous search engine option
-	loadSearchEngine();
+	/* Search Actions */
+	const searchForm = document.getElementById('searchForm');
+	const searchInput = document.getElementById('searchInput');
+	const searchOptions = document.getElementById('searchEngine');
+	const searchLabels = searchOptions.querySelectorAll('label[for]');
+	const searchEngineRadios = document.getElementsByName('searchEngine');
 
 	// Add event listener for radio buttons
 	for (const radio of searchEngineRadios) {
 		radio.addEventListener('change', () => {
 			localStorage.setItem(SEARCH_ENGINE_OPT, radio.value);
+		});
+	}
+
+	// Add event listener for label when using keyboard
+	for (const label of searchLabels) {
+		label.addEventListener('keydown', (event) => {
+			if (event.key === 'Enter') {
+				const radioInput = label.querySelector('input[type="radio"]');
+				radioInput.checked = true;
+			}
 		});
 	}
 
@@ -64,13 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	/* Settings Actions */
-
-	const settingsDialog = document.getElementById('settingsDialog');
 	const showSettings = document.querySelector('.openSettings');
 	const closeSettings = document.querySelector('.closeSettings');
 
+	// Add event listener for settings button
 	showSettings.addEventListener('click', () => openSettingsDialog());
 
+	// Add event listener for close settings button
 	closeSettings.addEventListener('click', () => closeSettingsDialog());
 
 	// Add event listener for text display toggle

@@ -1,8 +1,8 @@
 /**
  * This file contains functions related to user custom text.
- * It exports the following functions: `applyText`, and `updateText`.
+ * It exports the following functions: `loadText`, and `updateText`.
  *
- * @function applyText - Applies the stored user text to the 'textDisplay' element if it exists.
+ * @function loadText - Applies the stored user text to the 'textDisplay' element if it exists.
  * @function updateText - Updates the text content of the 'textDisplay' element and stores it in the local storage.
  *
  * @module search
@@ -15,7 +15,7 @@ import { USER_TEXT_OPT } from './constants.js';
  *
  * @return {void} This function does not return anything.
  */
-export const applyText = () => {
+export const loadText = () => {
 	const userTextDiv = document.getElementById('textDisplay');
 	const storedValue = localStorage.getItem(USER_TEXT_OPT);
 
