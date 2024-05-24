@@ -75,7 +75,7 @@ body {
 	/* display: flex; */
 	position: absolute;
 	top: 20px;
-	right: 20px;
+	right: 0;
 	width: fit-content;
 }
 
@@ -91,8 +91,10 @@ body {
 
 #ai a svg,
 #ai a svg g,
+#ai a svg path,
 #ai a svg path {
 	fill: var(--light-color);
+	stroke: var(--light-color);
 }
 
 #ai a {
@@ -327,11 +329,13 @@ form {
 	top: -20px;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	padding: 0.5rem 0.5rem;
 	opacity: 0;
 	transition: all 0.5s cubic-bezier(0.25, 0.25, 0.5, 1.9);
 }
 
-#bookmarks #markItems a:hover span {
+#bookmarks #markItems a:hover span,
+#bookmarks #markItems a:focus span {
 	display: flex;
 	opacity: 1;
 }
