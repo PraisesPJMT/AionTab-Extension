@@ -18,7 +18,7 @@ const searchEngineRadios = document.getElementsByName('searchEngine');
 /**
  * Returns the search URL based on the given search engine and query.
  *
- * @param {string} engine - The search engine to use. Can be 'google', 'bing', 'duckduckgo', or 'youtube'.
+ * @param {string} engine - The search engine to use. Can be 'google', 'bing', 'brave', 'duckduckgo', or 'youtube'.
  * @param {string} query - The search query.
  * @return {string} The search URL.
  */
