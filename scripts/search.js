@@ -5,7 +5,7 @@
  * @function performSearch - Performs a search operation based on the selected search engine and search input.
  * @function loadSearchEngine - Loads the search engine option based on the saved search engine value.
  * @function getSearchUrl - Returns the search URL based on the given search engine and query.
- * 
+ *
  * @module search
  */
 
@@ -28,6 +28,8 @@ const getSearchUrl = (engine, query) => {
 			return `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 		case 'bing':
 			return `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+		case 'brave':
+			return `https://search.brave.com/search?q=${encodeURIComponent(query)}`;
 		case 'duckduckgo':
 			return `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
 		case 'youtube':
