@@ -5,6 +5,8 @@
  * @module clock
  */
 
+import { DAY_NAMES, MONTH_NAMES } from './constants.js';
+
 /**
  * Updates the analog and digital clocks with the current time.
  *
@@ -73,4 +75,30 @@ export const updateClock = () => {
 		[secondDigit, minsDigit, hourDigit],
 		[secondsStr, minsStr, hoursStr]
 	);
+
+	// Get the day of the week (0 - 6)
+	const dayOfWeek = currentDate.getDay();
+
+	// Get the day of the month (1 - 31)
+	const dayOfMonth = currentDate.getDate();
+
+	// Get the month (0 = January, 1 = February, ..., 11 = December)
+	const month = currentDate.getMonth();
+
+	// Get the name of the month using the array
+	const monthName = MONTH_NAMES[month];
+
+	// Get the name of the day using the array
+	const dayName = DAY_NAMES[dayOfWeek];
+	const dateElements = document.querySelectorAll('.date');
+
+	if (dateElements) {
+		dateElements.forEach(
+			(elem) =>
+				(elem.innerText = `${dayName.substring(0, 3)} | ${monthName.substring(
+					0,
+					3
+				)} ${dayOfMonth}`)
+		);
+	}
 };

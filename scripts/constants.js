@@ -73,3 +73,38 @@ export const ANALOG_CLOCK_TOGGLE_ID = 'hiddenAnalogClockToggleInputContent';
  * @type {string}
  */
 export const DIGITAL_CLOCK_TOGGLE_ID = 'hiddenDigitalClockToggleInputContent';
+
+/**
+ * The array for the months of the year.
+ *
+ * @type {array}
+ */
+export const MONTH_NAMES = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December',
+];
+
+/**
+ * The array for the days of the year.
+ *
+ * @type {array}
+ */
+export const DAY_NAMES = [
+	'Sunday',
+	'Monday',
+	'Tuesday',
+	'Wednesday',
+	'Thursday',
+	'Friday',
+	'Saturday',
+];
