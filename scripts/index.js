@@ -1,8 +1,8 @@
-import { updateClock } from './scripts/clock.js';
-import { updateText, loadText } from './scripts/text.js';
-import { SEARCH_ENGINE_OPT } from './scripts/constants.js';
-import { bookmarkCLickAction } from './scripts/bookmark.js';
-import { loadSearchEngine, performSearch } from './scripts/search.js';
+import { updateClock } from './clock.js';
+import { updateText, loadText } from './text.js';
+import { SEARCH_ENGINE_OPT } from './constants.js';
+import { bookmarkCLickAction } from './bookmark.js';
+import { loadSearchEngine, performSearch } from './search.js';
 import {
 	loadSettings,
 	openSettingsDialog,
@@ -12,7 +12,7 @@ import {
 	toggleClockDisplay,
 	toggleAIToolsDisplay,
 	toggleBookmarksDisplay,
-} from './scripts/settings.js';
+} from './settings.js';
 
 // DOM Load Actions
 document.addEventListener('DOMContentLoaded', () => {
