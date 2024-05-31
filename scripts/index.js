@@ -7,6 +7,7 @@ import {
 	loadSettings,
 	openSettingsDialog,
 	closeSettingsDialog,
+	toggleTheme,
 	toggleClockType,
 	toggleTextDisplay,
 	toggleClockDisplay,
@@ -162,6 +163,28 @@ document.addEventListener('DOMContentLoaded', () => {
 	digitalClockSpanToggle.addEventListener('click', (event) =>
 		toggleClockType(event)
 	);
+
+	// Add event listener for theme toggle
+	const themeToggle = document.getElementById('theme-select');
+	const darkThemeSpanToggle = document.getElementById(
+		'hiddenDarkThemeToggleInputContent'
+	);
+	const lightThemeSpanToggle = document.getElementById(
+		'hiddenLightThemeToggleInputContent'
+	);
+
+	themeToggle.addEventListener('click', (event) => event.preventDefault());
+	themeToggle.addEventListener('change', (event) => event.preventDefault());
+
+	darkThemeSpanToggle.addEventListener('keydown', (event) =>
+		toggleTheme(event)
+	);
+	darkThemeSpanToggle.addEventListener('click', (event) => toggleTheme(event));
+
+	lightThemeSpanToggle.addEventListener('keydown', (event) =>
+		toggleTheme(event)
+	);
+	lightThemeSpanToggle.addEventListener('click', (event) => toggleTheme(event));
 });
 
 document.addEventListener('keydown', (event) => {

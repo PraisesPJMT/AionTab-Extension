@@ -75,6 +75,28 @@ export const ANALOG_CLOCK_TOGGLE_ID = 'hiddenAnalogClockToggleInputContent';
 export const DIGITAL_CLOCK_TOGGLE_ID = 'hiddenDigitalClockToggleInputContent';
 
 /**
+ * The key for storing and retrieving the theme
+ * preference from local storage.
+ *
+ * @type {string}
+ */
+export const THEME_OPT = 'theme';
+
+/**
+ * The key for selecting dark theme toggle element.
+ *
+ * @type {string}
+ */
+export const DARK_THEME_TOGGLE_ID = 'hiddenDarkThemeToggleInputContent';
+
+/**
+ * The key for selecting light toggle element.
+ *
+ * @type {string}
+ */
+export const LIGHT_THEME_TOGGLE_ID = 'hiddenLightThemeToggleInputContent';
+
+/**
  * The array for the months of the year.
  *
  * @type {array}

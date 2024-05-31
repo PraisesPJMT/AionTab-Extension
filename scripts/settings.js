@@ -9,10 +9,13 @@
  */
 
 import {
+	THEME_OPT,
 	CLOCK_TYPE_OPT,
 	TEXT_DISPLAY_OPT,
 	CLOCK_DISPLAY_OPT,
 	AI_TOOLS_DISPLAY_OPT,
+	DARK_THEME_TOGGLE_ID,
+	LIGHT_THEME_TOGGLE_ID,
 	BOOKMARKS_DISPLAY_OPT,
 	ANALOG_CLOCK_TOGGLE_ID,
 	DIGITAL_CLOCK_TOGGLE_ID,
@@ -200,6 +203,53 @@ export const toggleClockType = (event) => {
 };
 
 /**
+ * Toggles the theme of the web page based on the state of the checkbox.
+ *
+ * @param {Event} event - The event object triggered by the checkbox change.
+ * @return {void} This function does not return anything.
+ */
+export const toggleTheme = (event) => {
+	const tabBody = document.getElementById('main');
+	const targetID = event.target.id;
+
+	/**
+	 * Sets the theme to dark and updates the local storage and settings.
+	 *
+	 * @return {void} This function does not return anything.
+	 */
+	const selectDarkTheme = () => {
+		localStorage.setItem(THEME_OPT, false);
+		tabBody.className = 'dark';
+		loadSettings();
+	};
+
+	/**
+	 * Sets the theme to light and updates the local storage and settings.
+	 *
+	 * @return {void} This function does not return anything.
+	 */
+	const selectLightTheme = () => {
+		localStorage.setItem(THEME_OPT, true);
+		tabBody.className = 'light';
+		loadSettings();
+	};
+
+	if (
+		targetID === DARK_THEME_TOGGLE_ID ||
+		(event.key === 'Enter' && targetID === DARK_THEME_TOGGLE_ID)
+	) {
+		selectDarkTheme();
+	}
+
+	if (
+		targetID === LIGHT_THEME_TOGGLE_ID ||
+		(event.key === 'Enter' && targetID === LIGHT_THEME_TOGGLE_ID)
+	) {
+		selectLightTheme();
+	}
+};
+
+/**
  * Loads the settings from local storage
  * - Updates the display of the text element based on the text display option.
  *
@@ -290,5 +340,19 @@ export const loadSettings = () => {
 		analogClock.style.display = 'block';
 		digitalClock.style.display = 'none';
 		clockTypeToggle.checked = false;
+	}
+
+	// Load clock type option
+	const themeOpt = localStorage.getItem(THEME_OPT);
+	const themeToggle = document.getElementById('theme-select');
+
+	const tabBody = document.getElementById('main');
+
+	if (themeOpt === 'false') {
+		tabBody.className = 'dark';
+		themeToggle.checked = false;
+	} else {
+		tabBody.className = 'light';
+		themeToggle.checked = true;
 	}
 };
