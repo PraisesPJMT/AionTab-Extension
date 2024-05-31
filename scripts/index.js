@@ -4,7 +4,7 @@ import { SEARCH_ENGINE_OPT } from './constants.js';
 import { bookmarkCLickAction } from './bookmark.js';
 import { loadSearchEngine, performSearch } from './search.js';
 import {
-	loadSettings,
+	loadAllSettings,
 	openSettingsDialog,
 	closeSettingsDialog,
 	toggleTheme,
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* Tab initialization */
 	loadText();
 	updateClock();
-	loadSettings();
+	loadAllSettings();
 	loadSearchEngine();
 
 	/* Clock Actions */

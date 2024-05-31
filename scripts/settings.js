@@ -35,7 +35,7 @@ const showSettings = document.querySelector('.openSettings');
  * @return {void} This function does not return a value.
  */
 const toggleItemDisplay = (event, data) => {
-	const { itemID, itemDisplay, itemStorage } = data;
+	const { itemID, itemDisplay, itemStorage, itemSettingsTag } = data;
 	const itemDisplayElement = document.getElementById(itemID);
 	const element = event.target.tagName.toLowerCase();
 
@@ -50,7 +50,7 @@ const toggleItemDisplay = (event, data) => {
 	const displayItem = () => {
 		localStorage.setItem(itemStorage, true);
 		itemDisplayElement.style.display = itemDisplay;
-		loadSettings();
+		settings['itemSettingsTag']();
 	};
 
 	/**
@@ -63,7 +63,7 @@ const toggleItemDisplay = (event, data) => {
 	const removeItem = () => {
 		localStorage.setItem(itemStorage, false);
 		itemDisplayElement.style.display = 'none';
-		loadSettings();
+		settings['itemSettingsTag']();
 	};
 
 	if (element === 'input') {
@@ -119,6 +119,7 @@ export const toggleTextDisplay = (event) =>
 		itemID: 'text',
 		itemDisplay: 'block',
 		itemStorage: TEXT_DISPLAY_OPT,
+		itemSettingsTag: 'loadTextSettings',
 	});
 
 /**
@@ -132,6 +133,7 @@ export const toggleAIToolsDisplay = (event) =>
 		itemID: 'ai',
 		itemDisplay: 'flex',
 		itemStorage: AI_TOOLS_DISPLAY_OPT,
+		itemSettingsTag: 'loadAIToolsSettings',
 	});
 
 /**
@@ -145,6 +147,7 @@ export const toggleBookmarksDisplay = (event) =>
 		itemID: 'bookmarks',
 		itemDisplay: 'flex',
 		itemStorage: BOOKMARKS_DISPLAY_OPT,
+		itemSettingsTag: 'loadBookmarksSettings',
 	});
 
 /**
@@ -158,6 +161,7 @@ export const toggleClockDisplay = (event) =>
 		itemID: 'clock',
 		itemDisplay: 'flex',
 		itemStorage: CLOCK_DISPLAY_OPT,
+		itemSettingsTag: 'loadClockDisplaySettings',
 	});
 
 /**
@@ -177,14 +181,14 @@ export const toggleClockType = (event) => {
 		localStorage.setItem(CLOCK_TYPE_OPT, false);
 		analogClock.style.display = 'block';
 		digitalClock.style.display = 'none';
-		loadSettings();
+		settings['loadClockSettings']();
 	};
 
 	const displayDigitalClock = () => {
 		localStorage.setItem(CLOCK_TYPE_OPT, true);
 		analogClock.style.display = 'none';
 		digitalClock.style.display = 'flex';
-		loadSettings();
+		settings['loadClockSettings']();
 	};
 
 	if (
@@ -220,7 +224,7 @@ export const toggleTheme = (event) => {
 	const selectDarkTheme = () => {
 		localStorage.setItem(THEME_OPT, false);
 		tabBody.className = 'dark';
-		loadSettings();
+		settings['loadThemeSettings']();
 	};
 
 	/**
@@ -231,7 +235,7 @@ export const toggleTheme = (event) => {
 	const selectLightTheme = () => {
 		localStorage.setItem(THEME_OPT, true);
 		tabBody.className = 'light';
-		loadSettings();
+		settings['loadThemeSettings']();
 	};
 
 	if (
@@ -249,110 +253,107 @@ export const toggleTheme = (event) => {
 	}
 };
 
-/**
- * Loads the settings from local storage
- * - Updates the display of the text element based on the text display option.
- *
- * @return {void} This function does not return anything.
- */
-export const loadSettings = () => {
-	/**
-	 * Loads the settings for a given item from local storage and updates its display style accordingly.
-	 *
-	 * @param {Object} itemData - An object containing the item properties.
-	 * @param {string} itemData.itemID - The ID of the item to load settings for.
-	 * @param {string} itemData.itemToggle - The ID of the toggle element associated with the item.
-	 * @param {string} itemData.itemDisplay - The display style to set on the item.
-	 * @param {string} itemData.itemStorage - The key to set in localStorage.
-	 * @return {void} This function does not return a value.
-	 */
-	const loadItemSettings = (itemData) => {
-		const { itemID, itemToggle, itemDisplay, itemStorage } = itemData;
-		const itemDisplayOpt = localStorage.getItem(itemStorage);
+const loadItemSettings = (itemData) => {
+	const { itemID, itemToggle, itemDisplay, itemStorage } = itemData;
+	const itemDisplayOpt = localStorage.getItem(itemStorage);
 
-		if (itemDisplayOpt) {
-			const itemDisplayElement = document.getElementById(itemID);
-			const itemDisplayToggle = document.getElementById(itemToggle);
+	if (itemDisplayOpt) {
+		const itemDisplayElement = document.getElementById(itemID);
+		const itemDisplayToggle = document.getElementById(itemToggle);
 
-			if (itemDisplayOpt === 'true') {
-				itemDisplayElement.style.display = itemDisplay;
-				itemDisplayToggle.checked = true;
-			} else {
-				itemDisplayElement.style.display = 'none';
-				itemDisplayToggle.checked = false;
-			}
+		if (itemDisplayOpt === 'true') {
+			itemDisplayElement.style.display = itemDisplay;
+			itemDisplayToggle.checked = true;
+		} else {
+			itemDisplayElement.style.display = 'none';
+			itemDisplayToggle.checked = false;
 		}
-	};
-
-	// Load text display option
-	loadItemSettings({
-		itemID: 'text',
-		itemToggle: 'text-toggle',
-		itemDisplay: 'block',
-		itemStorage: TEXT_DISPLAY_OPT,
-	});
-
-	// Load AI Tools display option
-	loadItemSettings({
-		itemID: 'ai',
-		itemToggle: 'ai-tools-toggle',
-		itemDisplay: 'flex',
-		itemStorage: AI_TOOLS_DISPLAY_OPT,
-	});
-
-	// Load bookmarks display option
-	loadItemSettings({
-		itemID: 'bookmarks',
-		itemToggle: 'bookmarks-toggle',
-		itemDisplay: 'flex',
-		itemStorage: BOOKMARKS_DISPLAY_OPT,
-	});
-
-	// Load clock display option
-	loadItemSettings({
-		itemID: 'clock',
-		itemToggle: 'clock-toggle',
-		itemDisplay: 'flex',
-		itemStorage: CLOCK_DISPLAY_OPT,
-	});
-
-	// Load clock type option
-	const clockTypeOpt = localStorage.getItem(CLOCK_TYPE_OPT);
-	const clockDisplayOpt = localStorage.getItem(CLOCK_DISPLAY_OPT);
-
-	const analogClock = document.querySelector('.analog-clock');
-	const digitalClock = document.querySelector('.digital-clock');
-	const clockTypeToggle = document.getElementById('clock-select');
-
-	if (clockDisplayOpt === 'false') {
-		clockTypeToggle.disabled = true;
-	} else {
-		clockTypeToggle.disabled = false;
 	}
+};
 
-	if (clockTypeOpt === 'true') {
-		analogClock.style.display = 'none';
-		digitalClock.style.display = 'flex';
-		clockTypeToggle.checked = true;
-	}
+export const settings = {
+	loadTextSettings: () =>
+		loadItemSettings({
+			itemID: 'text',
+			itemToggle: 'text-toggle',
+			itemDisplay: 'block',
+			itemStorage: TEXT_DISPLAY_OPT,
+		}),
 
-	if (clockTypeOpt === 'false') {
-		analogClock.style.display = 'block';
-		digitalClock.style.display = 'none';
-		clockTypeToggle.checked = false;
-	}
+	loadAIToolsSettings: () =>
+		loadItemSettings({
+			itemID: 'ai',
+			itemToggle: 'ai-tools-toggle',
+			itemDisplay: 'flex',
+			itemStorage: AI_TOOLS_DISPLAY_OPT,
+		}),
 
-	// Load clock type option
-	const themeOpt = localStorage.getItem(THEME_OPT);
-	const themeToggle = document.getElementById('theme-select');
+	loadBookmarksSettings: () =>
+		loadItemSettings({
+			itemID: 'bookmarks',
+			itemToggle: 'bookmarks-toggle',
+			itemDisplay: 'flex',
+			itemStorage: BOOKMARKS_DISPLAY_OPT,
+		}),
 
-	const tabBody = document.getElementById('main');
+	loadClockDisplaySettings: () =>
+		loadItemSettings({
+			itemID: 'clock',
+			itemToggle: 'clock-toggle',
+			itemDisplay: 'flex',
+			itemStorage: CLOCK_DISPLAY_OPT,
+		}),
 
-	if (themeOpt === 'false') {
-		tabBody.className = 'dark';
-		themeToggle.checked = false;
-	} else {
-		tabBody.className = 'light';
-		themeToggle.checked = true;
-	}
+	loadClockSettings: () => {
+		const clockTypeOpt = localStorage.getItem(CLOCK_TYPE_OPT);
+		const clockDisplayOpt = localStorage.getItem(CLOCK_DISPLAY_OPT);
+
+		const analogClock = document.querySelector('.analog-clock');
+		const digitalClock = document.querySelector('.digital-clock');
+		const clockTypeToggle = document.getElementById('clock-select');
+
+		if (clockDisplayOpt === 'false') {
+			clockTypeToggle.disabled = true;
+		} else {
+			clockTypeToggle.disabled = false;
+		}
+
+		if (clockTypeOpt === 'true') {
+			analogClock.style.display = 'none';
+			digitalClock.style.display = 'flex';
+			clockTypeToggle.checked = true;
+		}
+
+		if (clockTypeOpt === 'false') {
+			analogClock.style.display = 'block';
+			digitalClock.style.display = 'none';
+			clockTypeToggle.checked = false;
+		}
+	},
+
+	loadThemeSettings: () => {
+		const themeOpt = localStorage.getItem(THEME_OPT);
+		const themeToggle = document.getElementById('theme-select');
+
+		const tabBody = document.getElementById('main');
+
+		if (themeOpt === 'false') {
+			tabBody.className = 'dark';
+			themeToggle.checked = false;
+		} else {
+			tabBody.className = 'light';
+			themeToggle.checked = true;
+		}
+
+		console.log('Theme: ' + tabBody.className);
+	},
+};
+
+export const loadAllSettings = () => {
+	settings.loadTextSettings();
+	settings.loadAIToolsSettings();
+	settings.loadBookmarksSettings();
+	settings.loadClockDisplaySettings();
+	settings.loadClockSettings();
+	settings.loadThemeSettings();
 };
