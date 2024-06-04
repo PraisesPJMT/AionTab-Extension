@@ -18,9 +18,9 @@ import {
 // DOM Load Actions
 document.addEventListener('DOMContentLoaded', () => {
 	/* Tab initialization */
+	loadAllSettings();
 	loadText();
 	updateClock();
-	loadAllSettings();
 	loadSearchEngine();
 
 	/* Clock Actions */
@@ -50,10 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	for (const radio of searchEngineRadios) {
 		radio.addEventListener('change', () => {
 			let settings = JSON.parse(localStorage.getItem(USER_SETTINGS));
-			settings = settings
-				? { ...settings, [SEARCH_ENGINE_OPT]: radio.value }
-				: { [SEARCH_ENGINE_OPT]: radio.value };
-
+			settings = { ...settings, [SEARCH_ENGINE_OPT]: radio.value };
 			localStorage.setItem(USER_SETTINGS, JSON.stringify(settings));
 		});
 	}

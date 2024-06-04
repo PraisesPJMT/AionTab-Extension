@@ -61,7 +61,7 @@ export const performSearch = () => {
 export const loadSearchEngine = () => {
 	let settings = JSON.parse(localStorage.getItem(USER_SETTINGS));
 
-	const savedSearchEngine = settings ? settings[SEARCH_ENGINE_OPT] : null;
+	const savedSearchEngine = settings[SEARCH_ENGINE_OPT];
 
 	if (savedSearchEngine) {
 		for (const radio of searchEngineRadios) {

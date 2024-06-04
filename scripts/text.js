@@ -19,7 +19,7 @@ export const loadText = () => {
 	const userTextDiv = document.getElementById('textDisplay');
 	const settings = JSON.parse(localStorage.getItem(USER_SETTINGS));
 
-	if (settings && settings[USER_TEXT_OPT]) {
+	if (settings[USER_TEXT_OPT]) {
 		userTextDiv.textContent = settings[USER_TEXT_OPT];
 	}
 };
@@ -32,10 +32,11 @@ export const loadText = () => {
  */
 export const updateText = () => {
 	const userTextDiv = document.getElementById('textDisplay');
-	let settings = JSON.parse(localStorage.getItem(USER_SETTINGS));
-	settings = settings
-		? { ...settings, [USER_TEXT_OPT]: userTextDiv.textContent }
-		: {};
+	let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+	savedSettings = {
+		...savedSettings,
+		[USER_TEXT_OPT]: userTextDiv.textContent,
+	};
 
-	localStorage.setItem(USER_SETTINGS, JSON.stringify(settings));
+	localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
 };

@@ -10,8 +10,10 @@
 
 import {
 	THEME_OPT,
+	USER_SETTINGS,
 	CLOCK_TYPE_OPT,
 	TEXT_DISPLAY_OPT,
+	DEFAULT_SETTINGS,
 	CLOCK_DISPLAY_OPT,
 	AI_TOOLS_DISPLAY_OPT,
 	DARK_THEME_TOGGLE_ID,
@@ -48,7 +50,9 @@ const toggleItemDisplay = (event, data) => {
 	 * @return {void} This function does not return a value.
 	 */
 	const displayItem = () => {
-		localStorage.setItem(itemStorage, true);
+		let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+		savedSettings = { ...savedSettings, [itemStorage]: true };
+		localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
 		itemDisplayElement.style.display = itemDisplay;
 		settings['itemSettingsTag']();
 	};
@@ -61,7 +65,9 @@ const toggleItemDisplay = (event, data) => {
 	 * @return {void} This function does not return a value.
 	 */
 	const removeItem = () => {
-		localStorage.setItem(itemStorage, false);
+		let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+		savedSettings = { ...savedSettings, [itemStorage]: false };
+		localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
 		itemDisplayElement.style.display = 'none';
 		settings['itemSettingsTag']();
 	};
@@ -171,21 +177,26 @@ export const toggleClockDisplay = (event) =>
  * @return {void} This function does not return anything.
  */
 export const toggleClockType = (event) => {
-	if (localStorage.getItem(CLOCK_DISPLAY_OPT) === 'false') return;
+	let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+	if (!savedSettings[CLOCK_DISPLAY_OPT]) return;
 
 	const analogClock = document.querySelector('.analog-clock');
 	const digitalClock = document.querySelector('.digital-clock');
 	const targetID = event.target.id;
 
 	const displayAnalogClock = () => {
-		localStorage.setItem(CLOCK_TYPE_OPT, false);
+		let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+		savedSettings = { ...savedSettings, [CLOCK_TYPE_OPT]: false };
+		localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
 		analogClock.style.display = 'block';
 		digitalClock.style.display = 'none';
 		settings['loadClockSettings']();
 	};
 
 	const displayDigitalClock = () => {
-		localStorage.setItem(CLOCK_TYPE_OPT, true);
+		let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+		savedSettings = { ...savedSettings, [CLOCK_TYPE_OPT]: true };
+		localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
 		analogClock.style.display = 'none';
 		digitalClock.style.display = 'flex';
 		settings['loadClockSettings']();
@@ -222,7 +233,9 @@ export const toggleTheme = (event) => {
 	 * @return {void} This function does not return anything.
 	 */
 	const selectDarkTheme = () => {
-		localStorage.setItem(THEME_OPT, false);
+		let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+		savedSettings = { ...savedSettings, [THEME_OPT]: false };
+		localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
 		tabBody.className = 'dark';
 		settings['loadThemeSettings']();
 	};
@@ -233,7 +246,9 @@ export const toggleTheme = (event) => {
 	 * @return {void} This function does not return anything.
 	 */
 	const selectLightTheme = () => {
-		localStorage.setItem(THEME_OPT, true);
+		let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+		savedSettings = { ...savedSettings, [THEME_OPT]: true };
+		localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
 		tabBody.className = 'light';
 		settings['loadThemeSettings']();
 	};
@@ -255,19 +270,19 @@ export const toggleTheme = (event) => {
 
 const loadItemSettings = (itemData) => {
 	const { itemID, itemToggle, itemDisplay, itemStorage } = itemData;
-	const itemDisplayOpt = localStorage.getItem(itemStorage);
+	let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+
+	const itemDisplayOpt = savedSettings[itemStorage];
+
+	const itemDisplayElement = document.getElementById(itemID);
+	const itemDisplayToggle = document.getElementById(itemToggle);
 
 	if (itemDisplayOpt) {
-		const itemDisplayElement = document.getElementById(itemID);
-		const itemDisplayToggle = document.getElementById(itemToggle);
-
-		if (itemDisplayOpt === 'true') {
-			itemDisplayElement.style.display = itemDisplay;
-			itemDisplayToggle.checked = true;
-		} else {
-			itemDisplayElement.style.display = 'none';
-			itemDisplayToggle.checked = false;
-		}
+		itemDisplayElement.style.display = itemDisplay;
+		itemDisplayToggle.checked = true;
+	} else {
+		itemDisplayElement.style.display = 'none';
+		itemDisplayToggle.checked = false;
 	}
 };
 
@@ -305,26 +320,27 @@ export const settings = {
 		}),
 
 	loadClockSettings: () => {
-		const clockTypeOpt = localStorage.getItem(CLOCK_TYPE_OPT);
-		const clockDisplayOpt = localStorage.getItem(CLOCK_DISPLAY_OPT);
+		let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+		const clockTypeOpt = savedSettings[CLOCK_TYPE_OPT];
+		const clockDisplayOpt = savedSettings[CLOCK_DISPLAY_OPT];
 
 		const analogClock = document.querySelector('.analog-clock');
 		const digitalClock = document.querySelector('.digital-clock');
 		const clockTypeToggle = document.getElementById('clock-select');
 
-		if (clockDisplayOpt === 'false') {
+		if (!clockDisplayOpt) {
 			clockTypeToggle.disabled = true;
 		} else {
 			clockTypeToggle.disabled = false;
 		}
 
-		if (clockTypeOpt === 'true') {
+		if (clockTypeOpt) {
 			analogClock.style.display = 'none';
 			digitalClock.style.display = 'flex';
 			clockTypeToggle.checked = true;
 		}
 
-		if (clockTypeOpt === 'false') {
+		if (!clockTypeOpt) {
 			analogClock.style.display = 'block';
 			digitalClock.style.display = 'none';
 			clockTypeToggle.checked = false;
@@ -332,12 +348,13 @@ export const settings = {
 	},
 
 	loadThemeSettings: () => {
-		const themeOpt = localStorage.getItem(THEME_OPT);
+		let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+		const themeOpt = savedSettings[THEME_OPT];
 		const themeToggle = document.getElementById('theme-select');
 
 		const tabBody = document.getElementById('main');
 
-		if (themeOpt === 'false') {
+		if (themeOpt === false) {
 			tabBody.className = 'dark';
 			themeToggle.checked = false;
 		} else {
@@ -348,6 +365,12 @@ export const settings = {
 };
 
 export const loadAllSettings = () => {
+	let savedSettings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+	savedSettings = savedSettings
+		? { ...savedSettings }
+		: { ...DEFAULT_SETTINGS };
+	localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
+
 	settings.loadTextSettings();
 	settings.loadAIToolsSettings();
 	settings.loadBookmarksSettings();

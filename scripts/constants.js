@@ -10,7 +10,7 @@
  *
  * @type {string}
  */
-export const USER_SETTINGS = 'tabSettings';
+export const USER_SETTINGS = 'USER_SETTINGS';
 
 /**
  * The key for storing and retrieving the user's text
@@ -18,7 +18,7 @@ export const USER_SETTINGS = 'tabSettings';
  *
  * @type {string}
  */
-export const USER_TEXT_OPT = 'userText';
+export const USER_TEXT_OPT = 'USER_TEXT_OPT';
 
 /**
  * The key for storing and retrieving the user's search engine
@@ -26,7 +26,7 @@ export const USER_TEXT_OPT = 'userText';
  *
  * @type {string}
  */
-export const SEARCH_ENGINE_OPT = 'searchEngine';
+export const SEARCH_ENGINE_OPT = 'SEARCH_ENGINE_OPT';
 
 /**
  * The key for storing and retrieving the user's text display
@@ -34,7 +34,7 @@ export const SEARCH_ENGINE_OPT = 'searchEngine';
  *
  * @type {string}
  */
-export const TEXT_DISPLAY_OPT = 'textDisplay';
+export const TEXT_DISPLAY_OPT = 'TEXT_DISPLAY_OPT';
 
 /**
  * The key for storing and retrieving the user's AI Tools display
@@ -42,7 +42,7 @@ export const TEXT_DISPLAY_OPT = 'textDisplay';
  *
  * @type {string}
  */
-export const AI_TOOLS_DISPLAY_OPT = 'aiToolsDisplay';
+export const AI_TOOLS_DISPLAY_OPT = 'AI_TOOLS_DISPLAY_OPT';
 
 /**
  * The key for storing and retrieving the user's bookmarks display
@@ -50,7 +50,7 @@ export const AI_TOOLS_DISPLAY_OPT = 'aiToolsDisplay';
  *
  * @type {string}
  */
-export const BOOKMARKS_DISPLAY_OPT = 'bookmarksDisplay';
+export const BOOKMARKS_DISPLAY_OPT = 'BOOKMARKS_DISPLAY_OPT';
 
 /**
  * The key for storing and retrieving the user's clock display
@@ -58,7 +58,7 @@ export const BOOKMARKS_DISPLAY_OPT = 'bookmarksDisplay';
  *
  * @type {string}
  */
-export const CLOCK_DISPLAY_OPT = 'clockDisplay';
+export const CLOCK_DISPLAY_OPT = 'CLOCK_DISPLAY_OPT';
 
 /**
  * The key for storing and retrieving the user's clock type
@@ -66,7 +66,7 @@ export const CLOCK_DISPLAY_OPT = 'clockDisplay';
  *
  * @type {string}
  */
-export const CLOCK_TYPE_OPT = 'clockType';
+export const CLOCK_TYPE_OPT = 'CLOCK_TYPE_OPT';
 
 /**
  * The key for selecting analog clock toggle element.
@@ -88,7 +88,7 @@ export const DIGITAL_CLOCK_TOGGLE_ID = 'hiddenDigitalClockToggleInputContent';
  *
  * @type {string}
  */
-export const THEME_OPT = 'theme';
+export const THEME_OPT = 'THEME_OPT';
 
 /**
  * The key for selecting dark theme toggle element.
@@ -138,3 +138,14 @@ export const DAY_NAMES = [
 	'Friday',
 	'Saturday',
 ];
+
+export const DEFAULT_SETTINGS = {
+	USER_TEXT_OPT: 'Edit this text...',
+	SEARCH_ENGINE_OPT: 'google',
+	THEME_OPT: true,
+	TEXT_DISPLAY_OPT: true,
+	BOOKMARKS_DISPLAY_OPT: true,
+	AI_TOOLS_DISPLAY_OPT: true,
+	CLOCK_DISPLAY_OPT: true,
+	CLOCK_TYPE_OPT: false,
+};
