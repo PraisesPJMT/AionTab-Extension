@@ -1,6 +1,6 @@
 import { updateClock } from './clock.js';
 import { updateText, loadText } from './text.js';
-import { SEARCH_ENGINE_OPT } from './constants.js';
+import { SEARCH_ENGINE_OPT, USER_SETTINGS } from './constants.js';
 import { bookmarkCLickAction } from './bookmark.js';
 import { loadSearchEngine, performSearch } from './search.js';
 import {
@@ -49,7 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Add event listener for radio buttons
 	for (const radio of searchEngineRadios) {
 		radio.addEventListener('change', () => {
-			localStorage.setItem(SEARCH_ENGINE_OPT, radio.value);
+			let settings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+			settings = settings
+				? { ...settings, [SEARCH_ENGINE_OPT]: radio.value }
+				: { [SEARCH_ENGINE_OPT]: radio.value };
+
+			localStorage.setItem(USER_SETTINGS, JSON.stringify(settings));
 		});
 	}
 

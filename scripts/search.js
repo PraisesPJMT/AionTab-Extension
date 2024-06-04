@@ -9,10 +9,8 @@
  * @module search
  */
 
-import { SEARCH_ENGINE_OPT } from './constants.js';
+import { SEARCH_ENGINE_OPT, USER_SETTINGS } from './constants.js';
 
-const searchForm = document.getElementById('searchForm');
-const searchInput = document.getElementById('searchInput');
 const searchEngineRadios = document.getElementsByName('searchEngine');
 
 /**
@@ -61,7 +59,9 @@ export const performSearch = () => {
  * @return {void} N/A
  */
 export const loadSearchEngine = () => {
-	const savedSearchEngine = localStorage.getItem(SEARCH_ENGINE_OPT);
+	let settings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+
+	const savedSearchEngine = settings ? settings[SEARCH_ENGINE_OPT] : null;
 
 	if (savedSearchEngine) {
 		for (const radio of searchEngineRadios) {
