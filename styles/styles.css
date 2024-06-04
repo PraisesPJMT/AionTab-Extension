@@ -18,6 +18,9 @@
 	--light-11-color: #bdbdcb11;
 	--light-99-color: #bdbdcb99;
 	--light-dd-color: #bdbdcbdd;
+	--clock-accent: #05934c;
+	--clock-accent-11: #05934c;
+	--clock-accent-secondary: #ee791a;
 }
 
 main.light {
@@ -28,6 +31,9 @@ main.light {
 	--accent-99-color: var(--dark-99-color);
 
 	--generic-shadow: rgba(0, 0, 0, 0.3);
+	--clock-accent: #036333;
+	--clock-accent-11: #036333;
+	--clock-accent-secondary: #ee791a;
 }
 
 main.dark {
@@ -38,6 +44,10 @@ main.dark {
 	--accent-99-color: var(--light-99-color);
 
 	--generic-shadow: rgba(0, 0, 0, 0.3);
+
+	--clock-accent: #61afff;
+	--clock-accent-11: #61afff;
+	--clock-accent-secondary: #ee791a;
 }
 
 * {
@@ -493,12 +503,12 @@ form#searchForm {
 .hour .digits::after,
 .minutes .digits::after {
 	content: attr(data);
-	color: #61afff;
+	color: var(--clock-accent);
 }
 
 .seconds .digits::after {
 	content: attr(data);
-	color: #ee791a;
+	color: var(--clock-accent-secondary);
 }
 
 .analog-clock {
@@ -552,7 +562,7 @@ form#searchForm {
 	position: absolute;
 	width: 4px;
 	height: 100%;
-	background: #47f6fa;
+	background: var(--clock-accent-11);
 	border-radius: 2px;
 	z-index: 0;
 	left: 49%;
@@ -618,7 +628,7 @@ form#searchForm {
 	width: 50%;
 	right: 50%;
 	height: 6px;
-	background: #61afff;
+	background: var(--clock-accent);
 	position: absolute;
 	top: 50%;
 	border-radius: 6px;
@@ -639,7 +649,7 @@ form#searchForm {
 }
 
 .hand.second-hand {
-	background: #ee791a;
+	background: var(--clock-accent-secondary);
 	width: 45%;
 	height: 2px;
 	z-index: 10;
