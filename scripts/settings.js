@@ -54,7 +54,7 @@ const toggleItemDisplay = (event, data) => {
 		savedSettings = { ...savedSettings, [itemStorage]: true };
 		localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
 		itemDisplayElement.style.display = itemDisplay;
-		settings['itemSettingsTag']();
+		settings[itemSettingsTag]();
 	};
 
 	/**
@@ -69,7 +69,7 @@ const toggleItemDisplay = (event, data) => {
 		savedSettings = { ...savedSettings, [itemStorage]: false };
 		localStorage.setItem(USER_SETTINGS, JSON.stringify(savedSettings));
 		itemDisplayElement.style.display = 'none';
-		settings['itemSettingsTag']();
+		settings[itemSettingsTag]();
 	};
 
 	if (element === 'input') {

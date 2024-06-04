@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Periodic clock Update
 	setInterval(updateClock, 1000);
 
+	localStorage.removeItem('tabSettings');
+
 	/* Text Actions */
 	const userTextDiv = document.getElementById('textDisplay');
 
