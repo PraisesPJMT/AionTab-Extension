@@ -24,7 +24,7 @@
 
 ## 📖 About AionTab Extension <a name="about-aiontab-extension"></a>
 
-> **`AionTab`** is an extension for Chromium-based browsers like `Chrome`, `Chromium`, `Edge`, `Brave`, and others. It replaces the default new tab with a cool, dark-looking tab offering various functionalities. These include multiple search engine options, bookmarks for AI chat sites and utility sites, a stylish analog clock, and more.
+> **`AionTab`** is an extension for both Chromium-based and Firefox-based brawser. This means the extension works for browsers like `Chrome`, `Chromium`, `Edge`, `Firefox`, `Brave`, and others. It replaces the default new tab with a cool, dark-looking tab offering various functionalities. These include multiple search engine options, bookmarks for AI chat sites and utility sites, a stylish analog clock, and more.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -53,10 +53,10 @@
 
 > The following are the key features of the extension.
 
-- Perform web search with the option of choosing from mulptiple search engine (`Google`, `Bing`, `DockDockGo`, `YouTube`)
+- Perform web search with the option of choosing from mulptiple search engines (` Google`, `Bing`, `DockDockGo`, `Brave`, `YouTube`)
 - Easily access popular AI chats such as `ChatGPT`, `Gemini`, and `Perplexity`
 - Easily access utility web applications such as `Gmail`, `Google Drive`, `GitHub`, `Facebook`, `LinkedIn`, `Twitter`, `WhatsApp`, `Telegram`, and `Instagram`.
-- See a nice looking analogue clock with date and month
+- See a nice looking analog clock with date and month
 - Have a custom text displayed on the screen
 <!-- Add more features as necessary -->
 
@@ -64,9 +64,13 @@
 
 ## 💻 Preview <a name="preview"></a>
 
-> AionTab Extension preview
+> AionTab Extension Dark Mode preview
 
-![AioTab](./assets/preview.jpeg)
+![AioTab](./assets/preview_dark.png)
+
+> AionTab Extension Light Mode preview
+
+![AioTab](./assets/preview_light.png)
 
 ## 🚀 Extension Deployment Link <a name="extension-deployment-link"></a>
 
@@ -80,7 +84,9 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> This guide details the steps to install `AionTab` extension on browsers that are built on the Chromium engine like Chrome, Chromium, Edge, Brave, and Opera.
+> This guide details the steps to install `AionTab` extension on browsers that are built on the Chromium engine like Chrome, Chromium, Edge, Brave, and Opera. The process also applies for browsers that are based on the Firefox engine like Firefox, Tor, Mullvad, LibreWolf and more. However, there is just a little variasion on how `developer mode` is enables on the browser.
+
+> `NOTE:` If you are having problems enabling `developer mode` on your browser, you can google/search the web on how to do it before proceeding.
 
 ### Prerequisites
 
@@ -89,10 +95,14 @@
 Install a modern browser e.g
 
 - [Google Chrome](https://www.google.com/chrome/)
+- [Firefox](https://www.mozilla.org/)
 - [Chromium](https://www.chromium.org/getting-involved/download-chromium/)
 - [Edge](https://www.microsoft.com/en-us/edge?r=1)
 - [Brave](https://brave.com/)
-- [Opera](https://www.opera.com/) etc.
+- [Opera](https://www.opera.com/)
+- [Tor](https://www.torproject.org/download/)
+- [Mullvad](https://mullvad.net/en/download/vpn/linux)
+- [LibreWolf](https://librewolf.net/) etc.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -101,7 +111,7 @@ Install a modern browser e.g
 > The following are setups for the `AionTab` extension before installation
 
 - Create a new folder in your computer `Documents` folder and name the folder `Extensions`.
-- Download the [AionTab](https://github.com/PraisesPJMT/AionTab-Extension/) using this link: [Downloan AionTab](https://github.com/PraisesPJMT/AionTab-Extension/archive/refs/heads/main.zip).
+- Download the [AionTab](https://github.com/PraisesPJMT/AionTab-Extension/) using this link: Download[ AionTab](https://github.com/PraisesPJMT/AionTab-Extension/archive/refs/heads/main.zip).
 - Move the downloaded `AionTab-Extension-main.zip` zip file of the AionTab extension to the newly created `Extensions` folder.
 - Extract the `AionTab-Extension-main.zip` file into the `Extensions` folder.
 
@@ -139,10 +149,12 @@ Install a modern browser e.g
 
 > The following are features to be expected in the future
 
-- [ ] **Add functionality **for selecting **a **different**** color theme****
+- [x] **Add functionality for selecting a different dark or light theme**
+- [ ] **Add functionality for selecting a different accent color**
 - [ ] **Add functionality for getting and displaying weather**
-- [ ] **Add functionality for selecting clock displayed **as either **analog** or digital** form**
+- [x] **Add functionality for selecting a clock displayed in either analog or digital form**
 - [ ] **Add functionality for adding different timezones**
+- [ ] **Add functionality for selecting a custom background picture**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -162,7 +174,7 @@ Give a ⭐️ if you like this project!
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-UI inspired by [Simple Analog Clock Using Html, CSS & Javascript](https://dev.to/code_mystery/simple-analog-clock-using-html-css-javascript-2c6a) published by Foolish Developer
+UI inspired by [Simple Analog Clock Using HTML, CSS & Javascript](https://dev.to/code_mystery/simple-analog-clock-using-html-css-javascript-2c6a) published by Foolish Developer
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
