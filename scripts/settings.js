@@ -344,8 +344,6 @@ export const settings = {
 			tabBody.className = 'light';
 			themeToggle.checked = true;
 		}
-
-		console.log('Theme: ' + tabBody.className);
 	},
 };
 

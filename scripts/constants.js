@@ -10,6 +10,14 @@
  *
  * @type {string}
  */
+export const USER_SETTINGS = 'tabSettings';
+
+/**
+ * The key for storing and retrieving the user's text
+ * preference from local storage.
+ *
+ * @type {string}
+ */
 export const USER_TEXT_OPT = 'userText';
 
 /**

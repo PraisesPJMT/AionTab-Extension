@@ -8,7 +8,7 @@
  * @module search
  */
 
-import { USER_TEXT_OPT } from './constants.js';
+import { USER_TEXT_OPT, USER_SETTINGS } from './constants.js';
 
 /**
  * Applies the stored user text to the 'textDisplay' element if it exists.
@@ -17,10 +17,10 @@ import { USER_TEXT_OPT } from './constants.js';
  */
 export const loadText = () => {
 	const userTextDiv = document.getElementById('textDisplay');
-	const storedValue = localStorage.getItem(USER_TEXT_OPT);
+	const settings = JSON.parse(localStorage.getItem(USER_SETTINGS));
 
-	if (storedValue) {
-		userTextDiv.textContent = storedValue;
+	if (settings && settings[USER_TEXT_OPT]) {
+		userTextDiv.textContent = settings[USER_TEXT_OPT];
 	}
 };
 
@@ -32,5 +32,10 @@ export const loadText = () => {
  */
 export const updateText = () => {
 	const userTextDiv = document.getElementById('textDisplay');
-	localStorage.setItem(USER_TEXT_OPT, userTextDiv.textContent);
+	let settings = JSON.parse(localStorage.getItem(USER_SETTINGS));
+	settings = settings
+		? { ...settings, [USER_TEXT_OPT]: userTextDiv.textContent }
+		: {};
+
+	localStorage.setItem(USER_SETTINGS, JSON.stringify(settings));
 };
